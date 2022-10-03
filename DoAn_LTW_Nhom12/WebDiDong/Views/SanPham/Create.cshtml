@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="container">
+        <form action="/SanPham/Create" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="MaSanPham">Mã sản phẩm</label>
+                    <input type="text"
+                           class="form-control"
+                           id="MaSanPham"
+                           name="MaSanPham"
+                           placeholder="Mã sản phẩm" />
+                </div>
+                <div class="col-md-6">
+                    <label for="TenSanPham">Tên sản phẩm</label>
+                    <input type="text"
+                           class="form-control"
+                           id="TenSanPham"
+                           name="TenSanPham"
+                           placeholder="Tên sản phẩm" />
+                </div>
+                <div class="col-md-6">
+                    <label for="MaLoaiSanPham">Ma~ Loại sản phẩm</label>
+                    <input type="text"
+                           class="form-control"
+                           id="MaLoaiSanPham"
+                           name="MaLoaiSanPham"
+                           placeholder="Loại sản phẩm" />
+                </div>
+                <div class="col-md-6">
+                    <label for="MaNhaSanXuat">Ma~ Nhà sản xuất</label>
+                    <input type="text"
+                           class="form-control"
+                           id="MaNhaSanXuat"
+                           name="MaNhaSanXuat"
+                           placeholder="Nhà sản xuất" />
+                </div>
+                <div class="col-md-6">
+                    <label for="Gia">Giá</label>
+                    <input type="number"
+                           class="form-control"
+                           id="Gia"
+                           name="Gia"
+                           placeholder="Giá" />
+                </div>
+                <div class="col-md-6">
+                    <label for="HinhChinh">Hình ảnh</label>
+                    <input type="file"
+                           class="form-control"
+                           id="HinhChinh"
+                           name="HinhChinh" />
+                </div>
+
+                <center>
+                    <button type="submit" class="btn btn-success" style="margin-top: 20px; margin-bottom: 20px; ">Create</button>
+                    <a href="/SanPham" class="btn btn-info">Cancel</a>
+                </center>
+            </div>
+        </form>
+    </div>
+

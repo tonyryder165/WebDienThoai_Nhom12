@@ -1,0 +1,37 @@
+﻿@model List<WebDiDong.Models.NhaSanXuat>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Nhà Sản Xuất</h2>
+<form>
+    <label for="search"></label>
+    <input type="search"
+           class="form-control"
+           id="search"
+           name="search"
+           placeholder="Search"
+           style="width: 200px; display: inline; margin-bottom: 20px;"
+           value="@ViewBag.Search"/>
+    <button type="submit" class="btn btn-primary mx-2">Go</button>
+</form>
+<table class="table">
+    <tr>
+        <th>Mã nhà sản xuất</th>
+        <th>Tên nhà sản xuất</th>
+        <th colspan="2">
+            <a href="#!" style="text-decoration: none "><img src="~/Asset/images/Add.png"><span style="color:green;">Thêm mới</span> </a>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.MaNhaSanXuat</td>
+            <td>@item.TenNhaSanXuat</td>
+            <td><a href="#!"> <img src="~/Asset/images/edit.png"></a> </td>
+            <td><a href="#!"> <img src="~/Asset/images/Delete.png"></a> </td>
+        </tr>
+    }
+</table>
+
