@@ -1,4 +1,5 @@
-﻿@model List<WebDiDong.Models.SanPham>
+﻿@model PagedList.IPagedList<WebDiDong.Models.SanPham>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,10 +13,9 @@
            class="form-control"
            id="search"
            name="search"
-           placeholder="Search" 
+           placeholder="Search"
            style="width: 200px; display: inline; margin-bottom: 20px;"
-           value="@ViewBag.Search"
-           />
+           value="@ViewBag.Search" />
     <button type="submit" class="btn btn-primary mx-2">Go</button>
 </form>
 
@@ -38,5 +38,12 @@
             <td><a href="/SanPham/Delete/@item.MaSanPham"> <img src="~/Asset/images/Delete.png"></a> </td>
         </tr>
     }
+
 </table>
+
+<div class="row text-center">
+    <ul class="pagination">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </ul>
+</div>
 

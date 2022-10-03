@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,13 +11,13 @@ namespace WebDiDong.Controllers
     public class SanPhamController : Controller
     {
         // GET: SanPham
-        public ActionResult Index(string search="")
+        public ActionResult Index(string search="", int page = 1, int pagesize = 6)
         {
             DBDiDongEntities db = new DBDiDongEntities();
             //List<SanPham> sanPhams = db.SanPhams.ToList();
             List<SanPham> sanPhams = db.SanPhams.Where<SanPham>(row => row.TenSanPham.Contains(search)).ToList();
             ViewBag.Search = search;
-            return View(sanPhams);
+            return View(sanPhams.ToPagedList(page, pagesize));
         }
 
         public ActionResult Create()

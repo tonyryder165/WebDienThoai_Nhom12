@@ -4,17 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebDiDong.Models;
+using PagedList;
 
 namespace WebDiDong.Controllers
 {
     public class ShopController : Controller
     {
         // GET: Shop
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pagesize = 3)
         {
             DBDiDongEntities db = new DBDiDongEntities();
             List<SanPham> sanPhams = db.SanPhams.ToList();
-            return View(sanPhams);
+            return View(sanPhams.ToPagedList(page, pagesize));
         }
 
         // GET: Shop/Details/5

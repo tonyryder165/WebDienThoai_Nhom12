@@ -1,4 +1,5 @@
-﻿@model List<WebDiDong.Models.SanPham>
+﻿@model PagedList.IPagedList<WebDiDong.Models.SanPham>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -43,11 +44,7 @@
                     </div>
                     <div class="row text-center">
                         <ul class="pagination">
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
                         </ul>
                     </div>
                 </div>
