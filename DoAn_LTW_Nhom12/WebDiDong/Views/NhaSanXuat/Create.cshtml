@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <form action="/NhaSanXuat/Create" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="MaNhaSanXuat">Mã nhà sản xuất</label>
+                <input type="text"
+                       class="form-control"
+                       id="MaNhaSanXuat"
+                       name="MaNhaSanXuat"
+                       placeholder="Mã nhà sản xuất"
+                       required />
+            </div>
+            <div class="col-md-6">
+                <label for="TenNhaSanXuat">Tên nhà sản xuất</label>
+                <input type="text"
+                       class="form-control"
+                       id="TenNhaSanXuat"
+                       name="TenNhaSanXuat"
+                       placeholder="Tên nhà sản xuất"
+                       required />
+            </div>
+            <center>
+                <button type="submit" class="btn btn-success" style="margin-top: 20px; margin-bottom: 20px; ">Create</button>
+                <a href="/NhaSanXuat" class="btn btn-info">Cancel</a>
+            </center>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,29 @@
+﻿@model WebDiDong.Models.NhaSanXuat
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 class="text-center">Xóa Loại Sản Phẩm</h2>
+    <form action="/NhaSanXuat/Delete/@Model.MaNhaSanXuat" method="post">
+        <input type="hidden" name="MaNhaSanXuat" value="@Model.MaNhaSanXuat" />
+        <table class="table">
+            <tr>
+                <th>Mã nhà sản xuất</th>
+                <td>@Model.MaNhaSanXuat</td>
+            </tr>
+            <tr>
+                <th>Tên nhà sản xuất</th>
+                <td>@Model.TenNhaSanXuat</td>
+            </tr>
+        </table>
+
+        <center>
+            <button type="submit" class="btn btn-danger" style="margin-top: 20px; margin-bottom: 20px; ">Delete</button>
+            <a href="/NhaSanXuat" class="btn btn-info" style="margin-top: 20px; margin-bottom: 20px; ">Cancel</a>
+        </center>
+    </form>
+</div>
+

@@ -356,6 +356,12 @@
     <Content Include="Views\SanPham\Create.cshtml" />
     <Content Include="Views\SanPham\Edit.cshtml" />
     <Content Include="Views\SanPham\Delete.cshtml" />
+    <Content Include="Views\LoaiSanPham\Create.cshtml" />
+    <Content Include="Views\LoaiSanPham\Edit.cshtml" />
+    <Content Include="Views\LoaiSanPham\Delete.cshtml" />
+    <Content Include="Views\NhaSanXuat\Create.cshtml" />
+    <Content Include="Views\NhaSanXuat\Edit.cshtml" />
+    <Content Include="Views\NhaSanXuat\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

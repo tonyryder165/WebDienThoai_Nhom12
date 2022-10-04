@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="container">
+        <form action="/LoaiSanPham/Create" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="MaLoaiSanPham">Mã loại sản phẩm</label>
+                    <input type="text"
+                           class="form-control"
+                           id="MaLoaiSanPham"
+                           name="MaLoaiSanPham"
+                           placeholder="Mã loại sản phẩm"
+                           required />
+                </div>
+                <div class="col-md-6">
+                    <label for="TenLoaiSanPham">Tên loại sản phẩm</label>
+                    <input type="text"
+                           class="form-control"
+                           id="TenLoaiSanPham"
+                           name="TenLoaiSanPham"
+                           placeholder="Tên loại sản phẩm"
+                           required />
+                </div>
+                <center>
+                    <button type="submit" class="btn btn-success" style="margin-top: 20px; margin-bottom: 20px; ">Create</button>
+                    <a href="/LoaiSanPham" class="btn btn-info">Cancel</a>
+                </center>
+            </div>
+        </form>
+    </div>
