@@ -11,7 +11,7 @@ namespace WebDiDong.Controllers
     public class ShopController : Controller
     {
         // GET: Shop
-        public ActionResult Index(int page = 1, int pagesize = 3)
+        public ActionResult Index(int page = 1, int pagesize = 6)
         {
             DBDiDongEntities db = new DBDiDongEntities();
             List<SanPham> sanPhams = db.SanPhams.ToList();
