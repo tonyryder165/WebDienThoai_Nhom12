@@ -4,25 +4,27 @@
     <Key>
       <PropertyRef Name="MaLoaiSanPham" />
     </Key>
-    <Property Name="MaLoaiSanPham" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaLoaiSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenLoaiSanPham" Type="nvarchar" MaxLength="50" />
+    <Property Name="TinhTrang" Type="nvarchar" MaxLength="3" />
   </EntityType>
   <EntityType Name="NhaSanXuat">
     <Key>
       <PropertyRef Name="MaNhaSanXuat" />
     </Key>
-    <Property Name="MaNhaSanXuat" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaNhaSanXuat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenNhaSanXuat" Type="nvarchar" MaxLength="50" />
+    <Property Name="TinhTrang" Type="nvarchar" MaxLength="3" />
   </EntityType>
   <EntityType Name="SanPham">
     <Key>
       <PropertyRef Name="MaSanPham" />
     </Key>
-    <Property Name="MaSanPham" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="MaLoaiSanPham" Type="nvarchar" MaxLength="10" />
-    <Property Name="MaNhaSanXuat" Type="nvarchar" MaxLength="10" />
+    <Property Name="MaSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaLoaiSanPham" Type="int" />
+    <Property Name="MaNhaSanXuat" Type="int" />
     <Property Name="TenSanPham" Type="nvarchar(max)" />
-    <Property Name="CauHinh" Type="text" />
+    <Property Name="CauHinh" Type="nvarchar(max)" />
     <Property Name="HinhChinh" Type="nvarchar" MaxLength="50" />
     <Property Name="Hinh1" Type="nvarchar" MaxLength="50" />
     <Property Name="Hinh2" Type="nvarchar" MaxLength="50" />
@@ -32,6 +34,7 @@
     <Property Name="SoLuongDaBan" Type="int" />
     <Property Name="LuotView" Type="int" />
     <Property Name="TinhTrang" Type="bit" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

@@ -1,30 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DBDiDongModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DBDiDongEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LoaiSanPhams" EntityType="DBDiDongModel.LoaiSanPham" />
+    <EntitySet Name="NhaSanXuats" EntityType="DBDiDongModel.NhaSanXuat" />
+    <EntitySet Name="SanPhams" EntityType="DBDiDongModel.SanPham" />
+    <EntitySet Name="sysdiagrams" EntityType="DBDiDongModel.sysdiagram" />
+    <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="DBDiDongModel.FK_SanPham_LoaiSanPham">
+      <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
+      <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_NhaSanXuat" Association="DBDiDongModel.FK_SanPham_NhaSanXuat">
+      <End Role="NhaSanXuat" EntitySet="NhaSanXuats" />
+      <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="LoaiSanPham">
     <Key>
       <PropertyRef Name="MaLoaiSanPham" />
     </Key>
-    <Property Name="MaLoaiSanPham" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaLoaiSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TenLoaiSanPham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
+    <Property Name="TinhTrang" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SanPhams" Relationship="DBDiDongModel.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
   </EntityType>
   <EntityType Name="NhaSanXuat">
     <Key>
       <PropertyRef Name="MaNhaSanXuat" />
     </Key>
-    <Property Name="MaNhaSanXuat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaNhaSanXuat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TenNhaSanXuat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_NhaSanXuat" FromRole="NhaSanXuat" ToRole="SanPham" />
+    <Property Name="TinhTrang" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SanPhams" Relationship="DBDiDongModel.FK_SanPham_NhaSanXuat" FromRole="NhaSanXuat" ToRole="SanPham" />
   </EntityType>
   <EntityType Name="SanPham">
     <Key>
       <PropertyRef Name="MaSanPham" />
     </Key>
-    <Property Name="MaSanPham" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="MaLoaiSanPham" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="MaNhaSanXuat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="MaSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaLoaiSanPham" Type="Int32" />
+    <Property Name="MaNhaSanXuat" Type="Int32" />
     <Property Name="TenSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CauHinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CauHinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="HinhChinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Hinh1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Hinh2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -34,24 +50,25 @@
     <Property Name="SoLuongDaBan" Type="Int32" />
     <Property Name="LuotView" Type="Int32" />
     <Property Name="TinhTrang" Type="Boolean" />
-    <NavigationProperty Name="LoaiSanPham" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
-    <NavigationProperty Name="NhaSanXuat" Relationship="Self.FK_SanPham_NhaSanXuat" FromRole="SanPham" ToRole="NhaSanXuat" />
+    <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LoaiSanPham" Relationship="DBDiDongModel.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
+    <NavigationProperty Name="NhaSanXuat" Relationship="DBDiDongModel.FK_SanPham_NhaSanXuat" FromRole="SanPham" ToRole="NhaSanXuat" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
       <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="principal_id" Type="Int32" Nullable="false" />
     <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="FK_SanPham_LoaiSanPham">
-    <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="0..1">
+    <End Type="DBDiDongModel.LoaiSanPham" Role="LoaiSanPham" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <End Type="DBDiDongModel.SanPham" Role="SanPham" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LoaiSanPham">
         <PropertyRef Name="MaLoaiSanPham" />
@@ -62,10 +79,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SanPham_NhaSanXuat">
-    <End Role="NhaSanXuat" Type="Self.NhaSanXuat" Multiplicity="0..1">
+    <End Type="DBDiDongModel.NhaSanXuat" Role="NhaSanXuat" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <End Type="DBDiDongModel.SanPham" Role="SanPham" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="NhaSanXuat">
         <PropertyRef Name="MaNhaSanXuat" />
@@ -75,18 +92,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DBDiDongEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="LoaiSanPhams" EntityType="Self.LoaiSanPham" />
-    <EntitySet Name="NhaSanXuats" EntityType="Self.NhaSanXuat" />
-    <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="Self.FK_SanPham_LoaiSanPham">
-      <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
-      <End Role="SanPham" EntitySet="SanPhams" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SanPham_NhaSanXuat" Association="Self.FK_SanPham_NhaSanXuat">
-      <End Role="NhaSanXuat" EntitySet="NhaSanXuats" />
-      <End Role="SanPham" EntitySet="SanPhams" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

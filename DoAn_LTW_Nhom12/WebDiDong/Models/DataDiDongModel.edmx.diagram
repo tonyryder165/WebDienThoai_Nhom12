@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e64ab07575244e0e86e0516082bb39e5" Name="Diagram1">
-        <EntityTypeShape EntityType="DBDiDongModel.LoaiSanPham" Width="1.5" PointX="0.875" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBDiDongModel.NhaSanXuat" Width="1.5" PointX="0.875" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBDiDongModel.SanPham" Width="1.5" PointX="4.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBDiDongModel.sysdiagram" Width="1.5" PointX="7.25" PointY="1.625" IsExpanded="true" />
-        <AssociationConnector Association="DBDiDongModel.FK_SanPham_LoaiSanPham" ManuallyRouted="false" />
-        <AssociationConnector Association="DBDiDongModel.FK_SanPham_NhaSanXuat" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBDiDongModel.LoaiSanPham" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBDiDongModel.NhaSanXuat" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DBDiDongModel.SanPham" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="DBDiDongModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2.25" />
+        <AssociationConnector Association="DBDiDongModel.FK_SanPham_LoaiSanPham" />
+        <AssociationConnector Association="DBDiDongModel.FK_SanPham_NhaSanXuat" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

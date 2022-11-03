@@ -13,7 +13,7 @@
                 <div class="col-lg-12">
                     <ul class="breadcrumb">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Product", "Index", "Shop")</li>
+                        <li>@Html.ActionLink("Sản Phẩm", "Index", "Shop")</li>
                     </ul>
                 </div>
             </div>
@@ -26,14 +26,14 @@
                                 {
                                     <div class="col-lg-4 col-md-3 col-xs-12">
                                         <div class="product">
-                                            <div class="image"><a href="#"><img style="width: 250px; height: 250px" src="~/Asset/images/@item.HinhChinh" /></a></div>
+                                            <div class="image"><a href="@Url.Action("Details", new { id = @item.MaSanPham})"><img style="width: 250px; height: 250px" src="~/Asset/images/@item.HinhChinh" /></a></div>
                                             <div class="buttons">
                                                 <a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
                                                 <a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
                                                 <a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
                                             </div>
                                             <div class="caption">
-                                                <div class="name"><h3><a href="#">@item.TenSanPham</a></h3></div>
+                                                <div class="name"><h3><a href="@Url.Action("Details", new { id = @item.MaSanPham})">@item.TenSanPham</a></h3></div>
                                                 <div class="price text-danger">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", item.Gia) VNĐ</div>
                                             </div>
                                         </div>

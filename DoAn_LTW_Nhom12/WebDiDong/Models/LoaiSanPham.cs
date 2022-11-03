@@ -20,8 +20,9 @@ namespace WebDiDong.Models
             this.SanPhams = new HashSet<SanPham>();
         }
     
-        public string MaLoaiSanPham { get; set; }
+        public int MaLoaiSanPham { get; set; }
         public string TenLoaiSanPham { get; set; }
+        public string TinhTrang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SanPham> SanPhams { get; set; }

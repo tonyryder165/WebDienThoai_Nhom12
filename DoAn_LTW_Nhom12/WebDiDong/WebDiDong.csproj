@@ -136,13 +136,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoaiSanPhamController.cs" />
     <Compile Include="Controllers\NhaSanXuatController.cs" />
-    <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BUS\NhaSanXuatBUS.cs" />
+    <Compile Include="Models\BUS\ShopOnlineBUS.cs" />
     <Compile Include="Models\DataDiDongModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -350,18 +350,13 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
-    <Content Include="Views\LoaiSanPham\Index.cshtml" />
+    <Content Include="Views\Shop\Details.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_NhaSanXuat.cshtml" />
     <Content Include="Views\NhaSanXuat\Index.cshtml" />
-    <Content Include="Views\SanPham\Index.cshtml" />
-    <Content Include="Views\SanPham\Create.cshtml" />
-    <Content Include="Views\SanPham\Edit.cshtml" />
-    <Content Include="Views\SanPham\Delete.cshtml" />
-    <Content Include="Views\LoaiSanPham\Create.cshtml" />
-    <Content Include="Views\LoaiSanPham\Edit.cshtml" />
-    <Content Include="Views\LoaiSanPham\Delete.cshtml" />
-    <Content Include="Views\NhaSanXuat\Create.cshtml" />
-    <Content Include="Views\NhaSanXuat\Edit.cshtml" />
-    <Content Include="Views\NhaSanXuat\Delete.cshtml" />
+    <Content Include="Views\Shared\_Top4New.cshtml" />
+    <Content Include="Views\Shared\_TopHot.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

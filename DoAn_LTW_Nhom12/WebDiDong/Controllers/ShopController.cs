@@ -21,7 +21,9 @@ namespace WebDiDong.Controllers
         // GET: Shop/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            DBDiDongEntities db = new DBDiDongEntities();
+            SanPham sp = db.SanPhams.Where(row => row.MaSanPham == id).FirstOrDefault();
+            return View(sp);
         }
 
         // GET: Shop/Create
