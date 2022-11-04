@@ -1,0 +1,41 @@
+﻿@model WebDiDong.Models.NhaSanXuat
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<style>
+
+    input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+</style>
+<div style="margin:auto;">
+    @using (Html.BeginForm("Create", "NhaSanXuatAdmin", FormMethod.Post, new { @style = "width : 50%; margin: auto;" }))
+    {
+        @*<label for="fname">Mã Nhà Sản Xuất</label>
+        <input type="text" id="fname" name="MaNhaSanXuat" placeholder="Mã Nhà Sản Xuất.." value="@Model.MaNhaSanXuat" />*@
+
+        <label for="lname">Tên Nhà Sản Xuất</label>
+        <input type="text" id="lname" name="TenNhaSanXuat" placeholder="Nhập tên nhà sản xuất..." required />
+
+        <label for="country">Tình Trạng</label>
+        <select id="country" style="width:20%;" name="TinhTrang" required>
+            <option value="0" selected>Chưa Khóa</option>
+            <option value="1">Đã Khóa</option>
+        </select>
+
+        <center>
+            <button type="submit" class="btn btn-success" style="margin-top: 20px; margin-bottom: 20px; ">Create</button>
+            <a href="@Url.Action("Index", "NhaSanXuatAdmin")" class="btn btn-info">Cancel</a>
+        </center>
+    }
+</div>  

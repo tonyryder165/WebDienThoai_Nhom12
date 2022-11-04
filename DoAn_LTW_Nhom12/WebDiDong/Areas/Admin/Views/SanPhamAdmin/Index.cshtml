@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebDiDong.Models.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">NHÀ SẢN XUẤT</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Mã sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Hình Ảnh</th>
+                            <th class="text-center" colspan="2">
+                                <a href="@Url.Action("Create","NhaSanXuatAdmin")"><img src="~/Asset/images/Add.png" /></a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MaSanPham</td>
+                                <td>@item.TenSanPham</td>
+                                <td class="text-center"><img src="~/Asset/images/@item.HinhChinh" style="width:60px;height:60px;"></td>
+                                <td class="text-center" colspan="2">
+                                    <a href="#"> <img src="~/Asset/images/edit.png" /></a> &nbsp;&nbsp;
+                                    <a href="#"> <img src="~/Asset/images/Delete.png" /></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

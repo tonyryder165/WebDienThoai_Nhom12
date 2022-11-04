@@ -241,7 +241,6 @@ C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\bin\Syste
 C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\bin\Newtonsoft.Json.xml
 C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\bin\Antlr3.Runtime.pdb
 C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.csprojAssemblyReference.cache
 C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.csproj.CoreCompileInputs.cache
 C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.csproj.CopyComplete
 C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.dll

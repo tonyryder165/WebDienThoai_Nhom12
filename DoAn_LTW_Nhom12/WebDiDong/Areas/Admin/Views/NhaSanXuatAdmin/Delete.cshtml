@@ -1,0 +1,42 @@
+﻿@model WebDiDong.Models.NhaSanXuat
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<h3></h3>
+<div class="container">
+    <h4>Bạn có muốn xóa ?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã nhà sản xuất:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaNhaSanXuat)
+        </dd>
+
+        <dt>
+            Tên nhà sản xuất
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenNhaSanXuat)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <center>
+        <button type="submit" class="btn btn-danger" style="margin-top: 20px; margin-bottom: 20px; ">Delete</button>
+        <a href="@Url.Action("Index", "NhaSanXuatAdmin")" class="btn btn-info" style="margin-top: 20px; margin-bottom: 20px; ">Cancel</a>
+    </center>
+</div>
+    }
+</div>
