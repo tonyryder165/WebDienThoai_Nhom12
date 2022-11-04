@@ -11,6 +11,7 @@ namespace WebDiDong.Areas.Admin.Controllers
         // GET: Admin/LoaiSanPham
         public ActionResult Index()
         {
+
             return View();
         }
 

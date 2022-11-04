@@ -245,3 +245,4 @@ C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\obj\Debug
 C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.csproj.CopyComplete
 C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.dll
 C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.pdb
+C:\Users\Sang\Desktop\WorkSpace\Git\DoAn_LTW\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.csprojAssemblyReference.cache

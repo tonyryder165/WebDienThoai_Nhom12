@@ -15,8 +15,8 @@ namespace WebDiDong.Models
     public partial class SanPham
     {
         public int MaSanPham { get; set; }
-        public int MaLoaiSanPham { get; set; }
-        public int MaNhaSanXuat { get; set; }
+        public Nullable<int> MaLoaiSanPham { get; set; }
+        public Nullable<int> MaNhaSanXuat { get; set; }
         public string TenSanPham { get; set; }
         public string CauHinh { get; set; }
         public string HinhChinh { get; set; }
@@ -27,7 +27,6 @@ namespace WebDiDong.Models
         public Nullable<int> Gia { get; set; }
         public Nullable<int> SoLuongDaBan { get; set; }
         public Nullable<int> LuotView { get; set; }
-        public Nullable<bool> TinhTrang { get; set; }
         public string GhiChu { get; set; }
     
         public virtual LoaiSanPham LoaiSanPham { get; set; }

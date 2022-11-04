@@ -1,14 +1,52 @@
 ﻿@model IEnumerable<WebDiDong.Models.NhaSanXuat>
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info">
+        <strong>Information : </strong> @TempData["InfoMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+else if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success ! </strong> @TempData["SuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error ! </strong> @TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
 }
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">NHÀ SẢN XUẤT</h6>
     </div>
+    <form style="margin-left: 49px; margin-top: 27px;">
+        <label for="search"></label>
+        <input type="search"
+               class="form-control"
+               id="search"
+               name="search"
+               placeholder="Search"
+               style="width: 200px; display: inline;"
+               value="@ViewBag.Search" />
+        <button type="submit" class="btn btn-primary mx-2">Go</button>
+    </form>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" cellspacing="0">
@@ -16,7 +54,6 @@
                     <tr>
                         <th>Mã nhà sản xuất</th>
                         <th>Tên nhà sản xuất</th>
-                        <th>Tình Trạng</th>
                         <th class="text-center" colspan="2">
                             <a href="@Url.Action("Create","NhaSanXuatAdmin")"><img src="~/Asset/images/Add.png" /></a>
                         </th>
@@ -28,7 +65,6 @@
                         <tr>
                             <td>@item.MaNhaSanXuat</td>
                             <td>@item.TenNhaSanXuat</td>
-                            <td>@item.TinhTrang</td>
                             <td class="text-center" colspan="2">
                                 <a href="@Url.Action("Edit","NhaSanXuatAdmin", new { id = @item.MaNhaSanXuat})"> <img src="~/Asset/images/edit.png" /></a> &nbsp;&nbsp;
                                 <a href="@Url.Action("Delete","NhaSanXuatAdmin", new { id = @item.MaNhaSanXuat})"> <img src="~/Asset/images/Delete.png" /></a>
@@ -40,4 +76,53 @@
             </table>
         </div>
     </div>
+
+
+
+    @{
+        int PrevPage = ViewBag.Page - 1;
+        if (PrevPage <= 0)
+        {
+            PrevPage = 1;
+        }
+        int NextPage = ViewBag.Page + 1;
+        if (NextPage > ViewBag.NoOfPages)
+        {
+            NextPage = ViewBag.NoOfPages;
+        }
+    }
+
+
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="/Admin/NhaSanXuatAdmin?page=@PrevPage">
+                <<
+            </a>
+        </li>
+        @for (int i = 0; i < ViewBag.NoOfPages; i++)
+        {
+            if (i + 1 == ViewBag.Page)
+            {
+                <li class="page-item active">
+                    <a class="page-link" href="/Admin/NhaSanXuatAdmin?page=@(i+1)">
+                        @(i + 1)
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/Admin/NhaSanXuatAdmin?page=@(i+1)">
+                        @(i + 1)
+                    </a>
+                </li>
+            }
+        }
+        <li class="page-item">
+            <a class="page-link" href="/Admin/NhaSanXuatAdmin?page=@NextPage">
+                >>
+            </a>
+        </li>
+    </ul>
 </div>
+

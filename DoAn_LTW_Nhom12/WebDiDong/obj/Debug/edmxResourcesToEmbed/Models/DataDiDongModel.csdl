@@ -4,7 +4,6 @@
     <EntitySet Name="LoaiSanPhams" EntityType="DBDiDongModel.LoaiSanPham" />
     <EntitySet Name="NhaSanXuats" EntityType="DBDiDongModel.NhaSanXuat" />
     <EntitySet Name="SanPhams" EntityType="DBDiDongModel.SanPham" />
-    <EntitySet Name="sysdiagrams" EntityType="DBDiDongModel.sysdiagram" />
     <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="DBDiDongModel.FK_SanPham_LoaiSanPham">
       <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
       <End Role="SanPham" EntitySet="SanPhams" />
@@ -20,7 +19,6 @@
     </Key>
     <Property Name="MaLoaiSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TenLoaiSanPham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="TinhTrang" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="SanPhams" Relationship="DBDiDongModel.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
   </EntityType>
   <EntityType Name="NhaSanXuat">
@@ -29,7 +27,6 @@
     </Key>
     <Property Name="MaNhaSanXuat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TenNhaSanXuat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="TinhTrang" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="SanPhams" Relationship="DBDiDongModel.FK_SanPham_NhaSanXuat" FromRole="NhaSanXuat" ToRole="SanPham" />
   </EntityType>
   <EntityType Name="SanPham">
@@ -40,7 +37,7 @@
     <Property Name="MaLoaiSanPham" Type="Int32" />
     <Property Name="MaNhaSanXuat" Type="Int32" />
     <Property Name="TenSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CauHinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CauHinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="HinhChinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Hinh1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Hinh2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -49,20 +46,9 @@
     <Property Name="Gia" Type="Int32" />
     <Property Name="SoLuongDaBan" Type="Int32" />
     <Property Name="LuotView" Type="Int32" />
-    <Property Name="TinhTrang" Type="Boolean" />
     <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="LoaiSanPham" Relationship="DBDiDongModel.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
     <NavigationProperty Name="NhaSanXuat" Relationship="DBDiDongModel.FK_SanPham_NhaSanXuat" FromRole="SanPham" ToRole="NhaSanXuat" />
-  </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="FK_SanPham_LoaiSanPham">
     <End Type="DBDiDongModel.LoaiSanPham" Role="LoaiSanPham" Multiplicity="0..1">

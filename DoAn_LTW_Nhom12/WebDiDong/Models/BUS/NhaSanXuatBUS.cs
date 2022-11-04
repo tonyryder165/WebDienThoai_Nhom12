@@ -10,7 +10,7 @@ namespace WebDiDong.Models.BUS
         public static IEnumerable<NhaSanXuat> DanhSach()
         {
             var db = new DBDiDongEntities();
-            return db.NhaSanXuats.SqlQuery("Select * from NhaSanXuat where TinhTrang = 0");
+            return db.NhaSanXuats.SqlQuery("Select * from NhaSanXuat");
         }
 
         public static IEnumerable<SanPham> ChiTiet(int id)

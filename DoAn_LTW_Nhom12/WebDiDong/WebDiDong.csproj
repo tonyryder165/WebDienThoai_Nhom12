@@ -2190,13 +2190,13 @@
     <Content Include="Areas\Admin\AssetAdmin\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Areas\Admin\AssetAdmin\vendor\jquery\jquery.min.map" />
     <Content Include="Areas\Admin\AssetAdmin\vendor\jquery\jquery.slim.min.map" />
-    <Content Include="Areas\Admin\Views\LoaiSanPham\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\NhaSanXuatAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SanPhamAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\NhaSanXuatAdmin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\NhaSanXuatAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\NhaSanXuatAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaSanXuatAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Custom\AutoHideAlert.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
