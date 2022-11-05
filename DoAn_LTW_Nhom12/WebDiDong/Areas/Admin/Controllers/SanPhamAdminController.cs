@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,10 +11,23 @@ namespace WebDiDong.Areas.Admin.Controllers
     public class SanPhamAdminController : Controller
     {
         // GET: Admin/SanPham
-        public ActionResult Index()
+        public ActionResult Index(string search = "", int page = 1)
         {
             DBDiDongEntities db = new DBDiDongEntities();
-            List<SanPham> sanPhams = db.SanPhams.ToList();
+            List<SanPham> sanPhams = db.SanPhams.Where<SanPham>(row => row.TenSanPham.Contains(search)).ToList();
+            ViewBag.Search = search;
+            if (sanPhams.Count == 0)
+            {
+                TempData["InfoMessage"] = "Currently products not available in the Database.";
+            }
+
+            //Paging
+            int NoOfRecordPerPage = 6;
+            int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(sanPhams.Count) / Convert.ToDouble(NoOfRecordPerPage)));
+            int NoOfRecordToSkip = (page - 1) * NoOfRecordPerPage;
+            ViewBag.Page = page;
+            ViewBag.NoOfPages = NoOfPages;
+            sanPhams = sanPhams.Skip(NoOfRecordToSkip).Take(NoOfRecordPerPage).ToList();
             return View(sanPhams);
         }
 
@@ -26,45 +40,117 @@ namespace WebDiDong.Areas.Admin.Controllers
         // GET: Admin/SanPham/Create
         public ActionResult Create()
         {
+            DBDiDongEntities db = new DBDiDongEntities();
+
+            ViewBag.NSX = db.NhaSanXuats.ToList();
+            ViewBag.LSP = db.LoaiSanPhams.ToList();
             return View();
         }
 
         // POST: Admin/SanPham/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(SanPham sp)
         {
+            
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    int IsInserted = 0;
+                    DBDiDongEntities db = new DBDiDongEntities();
 
-                return RedirectToAction("Index");
+
+                    //Image
+                    string fileName = Path.GetFileNameWithoutExtension(sp.ImageFile.FileName);
+                    string extension = Path.GetExtension(sp.ImageFile.FileName);
+                    fileName = fileName + extension;
+                    sp.HinhChinh = fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Asset/images/"), fileName);
+                    sp.ImageFile.SaveAs(fileName);
+
+
+                    sp.LuotView = 0;
+                    sp.SoLuongDaBan = 0;
+                    sp.GhiChu = "New";
+                    db.SanPhams.Add(sp);
+                    IsInserted = db.SaveChanges();
+                    if (IsInserted == 1)
+                    {
+                        TempData["SuccessMessage"] = "Bạn đã thêm thành công...!";
+                    }
+                    else
+                    {
+                        TempData["ErrorMessage"] = "Product is already available/ Unable to save the product details.";
+                    }
+                }
+
             }
-            catch
+            catch (Exception ex)
             {
+                TempData["ErrorMessage"] = ex.Message;
                 return View();
             }
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/SanPham/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            DBDiDongEntities db = new DBDiDongEntities();
+            SanPham sanPham = db.SanPhams.Where<SanPham>(row => row.MaSanPham == id).FirstOrDefault();
+            ViewBag.NSX = db.NhaSanXuats.ToList();
+            ViewBag.LSP = db.LoaiSanPhams.ToList();
+            if (sanPham == null)
+            {
+                TempData["InfoMessage"] = "Product not available with ID " + id.ToString();
+                return RedirectToAction("Index");
+            }
+            return View(sanPham);
         }
 
         // POST: Admin/SanPham/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, SanPham sp)
         {
             try
             {
-                // TODO: Add update logic here
+                int IsUpdate = 0;
+                DBDiDongEntities db = new DBDiDongEntities();
+                SanPham sanPham = db.SanPhams.Where<SanPham>(row => row.MaSanPham == sp.MaSanPham).FirstOrDefault();
 
-                return RedirectToAction("Index");
+
+                //Image
+                string fileName = Path.GetFileNameWithoutExtension(sp.ImageFile.FileName);
+                string extension = Path.GetExtension(sp.ImageFile.FileName);
+                fileName = fileName + extension;
+                sp.HinhChinh = fileName;
+                fileName = Path.Combine(Server.MapPath("~/Asset/images/"), fileName);
+                sp.ImageFile.SaveAs(fileName);
+
+
+                sanPham.MaSanPham = sp.MaSanPham;
+                sanPham.TenSanPham = sp.TenSanPham;
+                sanPham.MaLoaiSanPham = sp.MaLoaiSanPham;
+                sanPham.MaNhaSanXuat = sp.MaNhaSanXuat;
+                sanPham.HinhChinh = sp.HinhChinh;
+                sanPham.Gia = sp.Gia;
+
+                IsUpdate = db.SaveChanges();
+                if (IsUpdate == 1)
+                {
+                    TempData["SuccessMessage"] = "Bạn đã cập nhật thành công...!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Product is already available/ Unable to update the product details.";
+                }
             }
-            catch
+            catch (Exception ex)
             {
+                TempData["ErrorMessage"] = ex.Message;
                 return View();
             }
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/SanPham/Delete/5

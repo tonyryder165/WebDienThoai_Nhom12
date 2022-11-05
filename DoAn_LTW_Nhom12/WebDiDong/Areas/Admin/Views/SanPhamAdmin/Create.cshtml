@@ -1,0 +1,90 @@
+﻿@model WebDiDong.Models.SanPham
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<style>
+        input[type=number], .inputSanPham {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        }
+
+        select{
+            margin-bottom: 8px;
+        }
+
+</style>
+@using (Html.BeginForm("Create", "SanPhamAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table style="display: flex; justify-content: center;">
+        <tr>
+            <td>Tên Sản Phẩm</td>         
+        </tr>
+        <tr>
+            <td> <input class="inputSanPham" type="text" name="TenSanPham" required /></td>
+        </tr>
+        <tr>
+            <td>Loại</td>
+        </tr>
+        <tr>
+            <td>
+                <select class="form-select" id="lLoai" name="MaLoaiSanPham">
+                    <option value="">Xin hãy chọn...</option>
+                    @foreach (var loai in ViewBag.LSP)
+                    {
+                        <option value="@loai.MaLoaiSanPham">
+                            @loai.TenLoaiSanPham
+                        </option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Giá</td>
+        </tr>
+        <tr>
+            <td> <input style="width: 300px; float:left;" type="number" name="Gia" required /></td>
+        </tr>
+        <tr>
+            <td>Nhà Sản Xuất</td>
+        </tr>
+        <tr>
+            <td>
+                <select class="form-select" id="lbrand" name="MaNhaSanXuat">
+                    <option value="">Xin hãy chọn...</option>
+                    @foreach (var nsx in ViewBag.NSX)
+                    {
+                        <option value="@nsx.MaNhaSanXuat">
+                            @nsx.TenNhaSanXuat
+                        </option>
+                    }
+                </select>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Hình Chính</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="file" id="limage" name="ImageFile" required />
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <center>
+                    <button type="submit" class="btn btn-success" style="margin-top: 20px; margin-bottom: 20px; ">Create</button>
+                    <a href="@Url.Action("Index", "SanPhamAdmin")" class="btn btn-info">Cancel</a>
+                </center>
+            </td>
+        </tr>
+    </table>
+}

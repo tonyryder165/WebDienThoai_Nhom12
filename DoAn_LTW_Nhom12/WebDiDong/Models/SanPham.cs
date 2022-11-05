@@ -11,6 +11,7 @@ namespace WebDiDong.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Web;
     
     public partial class SanPham
     {
@@ -24,6 +25,7 @@ namespace WebDiDong.Models
         public string Hinh2 { get; set; }
         public string Hinh3 { get; set; }
         public string Hinh4 { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
         public Nullable<int> Gia { get; set; }
         public Nullable<int> SoLuongDaBan { get; set; }
         public Nullable<int> LuotView { get; set; }

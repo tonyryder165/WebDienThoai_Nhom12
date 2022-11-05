@@ -99,6 +99,7 @@ namespace WebDiDong.Areas.Admin.Controllers
 
                 loaiSanPham.MaLoaiSanPham = lsp.MaLoaiSanPham;
                 loaiSanPham.TenLoaiSanPham = lsp.TenLoaiSanPham;
+
                 IsUpdate = db.SaveChanges();
                 if (IsUpdate == 1)
                 {
