@@ -2195,6 +2195,10 @@
     <Content Include="Areas\Admin\Views\NhaSanXuatAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\NhaSanXuatAdmin\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\NhaSanXuatAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPhamAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPhamAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPhamAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPhamAdmin\Delete.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\AutoHideAlert.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

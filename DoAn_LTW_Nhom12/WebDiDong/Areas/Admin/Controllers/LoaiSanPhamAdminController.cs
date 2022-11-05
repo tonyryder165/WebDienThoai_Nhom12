@@ -3,16 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebDiDong.Models;
 
 namespace WebDiDong.Areas.Admin.Controllers
 {
     public class LoaiSanPhamAdminController : Controller
     {
         // GET: Admin/LoaiSanPham
-        public ActionResult Index()
+        public ActionResult Index(string search = "", int page = 1)
         {
+            DBDiDongEntities db = new DBDiDongEntities();
+            List<LoaiSanPham> loaiSanPhams = db.LoaiSanPhams.Where<LoaiSanPham>(row => row.TenLoaiSanPham.Contains(search)).ToList();
+            ViewBag.Search = search;
+            if (loaiSanPhams.Count == 0)
+            {
+                TempData["InfoMessage"] = "Currently products not available in the Database.";
+            }
 
-            return View();
+            //Paging
+            int NoOfRecordPerPage = 6;
+            int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(loaiSanPhams.Count) / Convert.ToDouble(NoOfRecordPerPage)));
+            int NoOfRecordToSkip = (page - 1) * NoOfRecordPerPage;
+            ViewBag.Page = page;
+            ViewBag.NoOfPages = NoOfPages;
+            loaiSanPhams = loaiSanPhams.Skip(NoOfRecordToSkip).Take(NoOfRecordPerPage).ToList();
+
+            return View(loaiSanPhams);
         }
 
         // GET: Admin/LoaiSanPham/Details/5
@@ -29,62 +45,117 @@ namespace WebDiDong.Areas.Admin.Controllers
 
         // POST: Admin/LoaiSanPham/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(LoaiSanPham lsp)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    int IsInserted = 0;
+                    DBDiDongEntities db = new DBDiDongEntities();
+                    db.LoaiSanPhams.Add(lsp);
+                    IsInserted = db.SaveChanges();
+                    if (IsInserted == 1)
+                    {
+                        TempData["SuccessMessage"] = "Bạn đã thêm thành công...!";
+                    }
+                    else
+                    {
+                        TempData["ErrorMessage"] = "Product is already available/ Unable to save the product details.";
+                    }
+                }
 
-                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
+                TempData["ErrorMessage"] = ex.Message;
                 return View();
             }
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/LoaiSanPham/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            DBDiDongEntities db = new DBDiDongEntities();
+            LoaiSanPham loaiSanPham = db.LoaiSanPhams.Where<LoaiSanPham>(row => row.MaLoaiSanPham == id).FirstOrDefault();
+            if (loaiSanPham == null)
+            {
+                TempData["InfoMessage"] = "Product not available with ID " + id.ToString();
+                return RedirectToAction("Index");
+            }
+            return View(loaiSanPham);
         }
 
         // POST: Admin/LoaiSanPham/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, LoaiSanPham lsp)
         {
             try
             {
-                // TODO: Add update logic here
+                int IsUpdate = 0;
+                DBDiDongEntities db = new DBDiDongEntities();
+                LoaiSanPham loaiSanPham = db.LoaiSanPhams.Where<LoaiSanPham>(row => row.MaLoaiSanPham == lsp.MaLoaiSanPham).FirstOrDefault();
 
-                return RedirectToAction("Index");
+                loaiSanPham.MaLoaiSanPham = lsp.MaLoaiSanPham;
+                loaiSanPham.TenLoaiSanPham = lsp.TenLoaiSanPham;
+                IsUpdate = db.SaveChanges();
+                if (IsUpdate == 1)
+                {
+                    TempData["SuccessMessage"] = "Bạn đã cập nhật thành công...!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Product is already available/ Unable to update the product details.";
+                }
             }
-            catch
+            catch (Exception ex)
             {
+                TempData["ErrorMessage"] = ex.Message;
                 return View();
             }
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/LoaiSanPham/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            DBDiDongEntities db = new DBDiDongEntities();
+            LoaiSanPham loaiSanPham = db.LoaiSanPhams.Where<LoaiSanPham>(row => row.MaLoaiSanPham == id).FirstOrDefault();
+            if (loaiSanPham == null)
+            {
+                TempData["InfoMessage"] = "Product not available with ID " + id.ToString();
+                return RedirectToAction("Index");
+            }
+            return View(loaiSanPham);
         }
 
         // POST: Admin/LoaiSanPham/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, LoaiSanPham lsp)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                int IsDeleted = 0;
+                DBDiDongEntities db = new DBDiDongEntities();
+                LoaiSanPham loaiSanPham = db.LoaiSanPhams.Where<LoaiSanPham>(row => row.MaLoaiSanPham == id).FirstOrDefault();
+                db.LoaiSanPhams.Remove(loaiSanPham);
+                IsDeleted = db.SaveChanges();
+                if (IsDeleted == 1)
+                {
+                    TempData["SuccessMessage"] = "Bạn đã xóa thành công...!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Product is already available/ Unable to update the product details.";
+                }
             }
-            catch
+            catch (Exception ex)
             {
+                TempData["ErrorMessage"] = ex.Message;
                 return View();
             }
+            return RedirectToAction("Index");
         }
     }
 }
