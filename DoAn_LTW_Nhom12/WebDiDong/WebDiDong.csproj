@@ -141,11 +141,13 @@
     <Compile Include="Areas\Admin\Controllers\NhaSanXuatAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamAdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoaiSanPhamController.cs" />
     <Compile Include="Controllers\NhaSanXuatController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BUS\LoaiSanPhamBUS.cs" />
     <Compile Include="Models\BUS\NhaSanXuatBUS.cs" />
     <Compile Include="Models\BUS\ShopOnlineBUS.cs" />
     <Compile Include="Models\DataDiDongModel.Context.cs">
@@ -1950,6 +1952,11 @@
     <Content Include="Asset\images\10.png" />
     <Content Include="Asset\images\11.png" />
     <Content Include="Asset\images\12.png" />
+    <Content Include="Asset\images\16_2_133.jpg" />
+    <Content Include="Asset\images\1w2kuj.jpg" />
+    <Content Include="Asset\images\1_253_3.jpg" />
+    <Content Include="Asset\images\1_264_5.png" />
+    <Content Include="Asset\images\2.1_1.png" />
     <Content Include="Asset\images\2.png" />
     <Content Include="Asset\images\3.png" />
     <Content Include="Asset\images\4.png" />
@@ -1959,6 +1966,8 @@
     <Content Include="Asset\images\8.png" />
     <Content Include="Asset\images\9.png" />
     <Content Include="Asset\images\Add.png" />
+    <Content Include="Asset\images\airpods-2_6.jpg" />
+    <Content Include="Asset\images\apple_watch.png" />
     <Content Include="Asset\images\close.png" />
     <Content Include="Asset\images\Delete.png" />
     <Content Include="Asset\images\discover-curved-32px.png" />
@@ -1968,23 +1977,35 @@
     <Content Include="Asset\images\galaxy-note-4.jpg" />
     <Content Include="Asset\images\galaxy-note.jpg" />
     <Content Include="Asset\images\galaxy-s4.jpg" />
+    <Content Include="Asset\images\gaming_004_2.png" />
     <Content Include="Asset\images\iphone.png" />
+    <Content Include="Asset\images\Iphone14-128GB.png" />
+    <Content Include="Asset\images\laptop-hp-gaming-victus-15-fa0031dx-6503849-6.jpg" />
     <Content Include="Asset\images\loading.gif" />
     <Content Include="Asset\images\logo.png" />
     <Content Include="Asset\images\logofooter.png" />
+    <Content Include="Asset\images\macbook_air_22.png" />
+    <Content Include="Asset\images\macbook_air_m2.png" />
     <Content Include="Asset\images\maestro-curved-32px.png" />
     <Content Include="Asset\images\main-banner1-1903x600.jpg" />
     <Content Include="Asset\images\main-banner2-1903x600.jpg" />
     <Content Include="Asset\images\main-banner3-1903x600.jpg" />
     <Content Include="Asset\images\next.png" />
+    <Content Include="Asset\images\NokiaC31.png" />
     <Content Include="Asset\images\paypal-curved-32px.png" />
     <Content Include="Asset\images\prev.png" />
+    <Content Include="Asset\images\realme-8-1_2.png" />
+    <Content Include="Asset\images\samsung-galaxy-tab-a7-lite-gray-600x600.jpg" />
     <Content Include="Asset\images\sub-banner1.png" />
     <Content Include="Asset\images\sub-banner2.png" />
     <Content Include="Asset\images\sub-banner3.png" />
     <Content Include="Asset\images\sub-banner4.jpg" />
     <Content Include="Asset\images\sub-banner5.png" />
+    <Content Include="Asset\images\tabs8.jpg" />
+    <Content Include="Asset\images\text_d_i_2_.png" />
     <Content Include="Asset\images\visa-curved-32px.png" />
+    <Content Include="Asset\images\xiaomi-mi-pad-5.jpg" />
+    <Content Include="Asset\images\x_mmas.png" />
     <Content Include="Asset\js\bootstrap.min.js" />
     <Content Include="Asset\js\html5shiv.js" />
     <Content Include="Asset\js\jquery-2.1.1.js" />
@@ -2312,6 +2333,8 @@
     <Content Include="Views\NhaSanXuat\Index.cshtml" />
     <Content Include="Views\Shared\_Top4New.cshtml" />
     <Content Include="Views\Shared\_TopHot.cshtml" />
+    <Content Include="Views\Shared\_LoaiSanPham.cshtml" />
+    <Content Include="Views\LoaiSanPham\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

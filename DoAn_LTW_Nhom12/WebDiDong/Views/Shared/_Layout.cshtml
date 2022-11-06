@@ -89,6 +89,7 @@
                     <li>
                         @Html.ActionLink("Sản Phẩm", "Index", "Shop")
                     </li>
+                    @Html.Partial("_LoaiSanPham", WebDiDong.Models.BUS.LoaiSanPhamBUS.DanhSach())
                     @Html.Partial("_NhaSanXuat", WebDiDong.Models.BUS.NhaSanXuatBUS.DanhSach())
                 </ul>
             </div>

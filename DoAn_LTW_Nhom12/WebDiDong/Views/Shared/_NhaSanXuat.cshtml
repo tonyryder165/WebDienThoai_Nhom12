@@ -1,15 +1,80 @@
 ﻿@model IEnumerable<WebDiDong.Models.NhaSanXuat>
 
+
+    
+
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hãng</a>
     <div class="dropdown-menu">
         <div class="dropdown-inner">
-            <ul class="list-unstyled">
-                @foreach (var item in Model)
+            <ul class="dropdown-divider">
+                @foreach (var item in Model.Take(5))
                 {
-                    <li><a href="@Url.Action("Index","NhaSanXuat", new { id = @item.MaNhaSanXuat})">@item.TenNhaSanXuat</a></li>
+                    <li>
+                        <a href="@Url.Action("Index", "NhaSanXuat", new { id = @item.MaNhaSanXuat })">@item.TenNhaSanXuat</a>
+                    </li>
+                }
+            </ul>
+
+            <ul class="dropdown-divider">
+                @foreach (var item in Model.Skip(5).Take(5))
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "NhaSanXuat", new { id = @item.MaNhaSanXuat })">@item.TenNhaSanXuat</a>
+                    </li>
+                }
+
+            </ul>
+            <ul class="dropdown-divider">
+                @foreach (var item in Model.Skip(10).Take(5))
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "NhaSanXuat", new { id = @item.MaNhaSanXuat })">@item.TenNhaSanXuat</a>
+                    </li>
+                }
+            </ul>
+            <ul class="dropdown-divider">
+                @foreach (var item in Model.Skip(15).Take(5))
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "NhaSanXuat", new { id = @item.MaNhaSanXuat })">@item.TenNhaSanXuat</a>
+                    </li>
+                }
+            </ul>
+            <ul class="dropdown-divider">
+                @foreach (var item in Model.Skip(20).Take(5))
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "NhaSanXuat", new { id = @item.MaNhaSanXuat })">@item.TenNhaSanXuat</a>
+                    </li>
+                }
+            </ul>
+            <ul class="dropdown-divider">
+                @foreach (var item in Model.Skip(25).Take(5))
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "NhaSanXuat", new { id = @item.MaNhaSanXuat })">@item.TenNhaSanXuat</a>
+                    </li>
+                }
+            </ul>
+            <ul class="dropdown-divider">
+                @foreach (var item in Model.Skip(30).Take(5))
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "NhaSanXuat", new { id = @item.MaNhaSanXuat })">@item.TenNhaSanXuat</a>
+                    </li>
+                }
+            </ul>
+            <ul class="dropdown-divider">
+                @foreach (var item in Model.Skip(35).Take(5))
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "NhaSanXuat", new { id = @item.MaNhaSanXuat })">@item.TenNhaSanXuat</a>
+                    </li>
                 }
             </ul>
         </div>
     </div>
 </li>
+
+
