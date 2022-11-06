@@ -5,8 +5,18 @@
     Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
 }
 
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error ! </strong> @TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+
 <style>
-        input[type=number], .inputSanPham {
+    input[type=number], input[type=file], .inputSanPham {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
@@ -14,18 +24,29 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
-        }
+    }
 
-        select{
-            margin-bottom: 8px;
-        }
+    select {
+        margin-bottom: 8px;
+    }
+
+    .ck-editor__editable[role="textbox"] {
+        /* editing area */
+        min-height: 200px;
+    }
+
+    .ck-content .image {
+        /* block images */
+        max-width: 80%;
+        margin: 20px auto;
+    }
 
 </style>
 @using (Html.BeginForm("Create", "SanPhamAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <table style="display: flex; justify-content: center;">
         <tr>
-            <td>Tên Sản Phẩm</td>         
+            <td>Tên Sản Phẩm</td>
         </tr>
         <tr>
             <td> <input class="inputSanPham" type="text" name="TenSanPham" required /></td>
@@ -74,10 +95,21 @@
         </tr>
         <tr>
             <td>
-                <input type="file" id="limage" name="ImageFile" required />
+                <input type="file" id="limage" name="HinHChinhFile" required />
 
             </td>
         </tr>
+
+        <tr>
+            <td>Cấu hình</td>
+        </tr>
+
+        <tr>
+            <td><textarea  name="CauHinh" id="editor"></textarea></td>
+            
+        </tr>
+        
+
         <tr>
             <td colspan="3">
                 <center>

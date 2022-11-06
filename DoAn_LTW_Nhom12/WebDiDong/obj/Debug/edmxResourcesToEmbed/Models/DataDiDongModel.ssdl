@@ -22,7 +22,7 @@
     <Property Name="MaLoaiSanPham" Type="int" />
     <Property Name="MaNhaSanXuat" Type="int" />
     <Property Name="TenSanPham" Type="nvarchar(max)" />
-    <Property Name="CauHinh" Type="text" />
+    <Property Name="CauHinh" Type="nvarchar(max)" />
     <Property Name="HinhChinh" Type="nvarchar" MaxLength="50" />
     <Property Name="Hinh1" Type="nvarchar" MaxLength="50" />
     <Property Name="Hinh2" Type="nvarchar" MaxLength="50" />

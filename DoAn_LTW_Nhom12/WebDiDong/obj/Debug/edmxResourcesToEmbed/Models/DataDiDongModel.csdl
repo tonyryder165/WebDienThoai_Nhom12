@@ -37,7 +37,7 @@
     <Property Name="MaLoaiSanPham" Type="Int32" />
     <Property Name="MaNhaSanXuat" Type="Int32" />
     <Property Name="TenSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CauHinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CauHinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="HinhChinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Hinh1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Hinh2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />

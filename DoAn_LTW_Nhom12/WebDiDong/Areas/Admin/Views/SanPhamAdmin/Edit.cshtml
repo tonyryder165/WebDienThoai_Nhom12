@@ -5,6 +5,16 @@
     Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
 }
 
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error ! </strong> @TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+
 <style>
     input[type=number], .inputSanPham {
         width: 100%;
@@ -14,10 +24,26 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
+        flex: 1;
     }
 
     select {
         margin-bottom: 8px;
+    }
+
+    select {
+        margin-bottom: 8px;
+    }
+
+    .ck-editor__editable[role="textbox"] {
+        /* editing area */
+        min-height: 200px;
+    }
+
+    .ck-content .image {
+        /* block images */
+        max-width: 80%;
+        margin: 20px auto;
     }
 </style>
 @using (Html.BeginForm("Edit", "SanPhamAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -33,7 +59,7 @@
             <td>Tên Sản Phẩm</td>
         </tr>
         <tr>
-            <td> <input class="inputSanPham" type="text" name="TenSanPham" value="@Model.TenSanPham"/></td>
+            <td> <input class="inputSanPham" type="text" name="TenSanPham" value="@Model.TenSanPham" /></td>
         </tr>
         <tr>
             <td>Loại</td>
@@ -99,24 +125,18 @@
         </tr>
         <tr>
             <td>
-                <input type="file" id="limage" name="ImageFile"/>
-                <script>
-                    // Get a reference to our file input
-                    const fileInput = document.querySelector('input[type="file"]');
-
-                    // Create a new File object
-                    const myFile = new File(['Hello World!'], '@Model.HinhChinh', {
-                        type: 'text/plain',
-                        lastModified: new Date(),
-                    });
-
-                    // Now let's create a DataTransfer to get a FileList
-                    const dataTransfer = new DataTransfer();
-                    dataTransfer.items.add(myFile);
-                    fileInput.files = dataTransfer.files;
-                </script>
+                @Model.HinhChinh
+                <input type="file" id="limage" name="HinHChinhFile" />
             </td>
         </tr>
+
+        <tr>
+            <td>Cấu Hình</td>
+        </tr>
+        <tr>
+            <td><textarea name="CauHinh" id="editor">@Model.CauHinh</textarea></td>
+        </tr>
+
         <tr>
             <td colspan="3">
                 <center>

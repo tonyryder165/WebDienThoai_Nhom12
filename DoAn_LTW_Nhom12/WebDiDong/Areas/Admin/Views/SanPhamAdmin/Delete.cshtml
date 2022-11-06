@@ -1,0 +1,86 @@
+﻿@model WebDiDong.Models.SanPham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error ! </strong> @TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+
+<div class="container">
+    <h3 class="text-info">Bạn có muốn xóa ?</h3>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                Mã sản phẩm:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MaSanPham)
+            </dd>
+
+            <dt>
+                Tên sản phẩm:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenSanPham)
+            </dd>
+
+            <dt>
+                Tên nhà sản xuất:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NhaSanXuat.TenNhaSanXuat)
+            </dd>
+
+            <dt>
+                Loại:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LoaiSanPham.TenLoaiSanPham)
+            </dd>
+
+            <dt>
+                Hình Chính:
+            </dt>
+
+            <dd>
+                <img src="~/Asset/images/@Model.HinhChinh" style="width:200px;height:200px;">
+            </dd>
+
+            <dt>
+                Giá:
+            </dt>
+
+            <dd>
+                @String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", Model.Gia) VNĐ
+            </dd>
+
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <center>
+                    <button type="submit" class="btn btn-danger" style="margin-top: 20px; margin-bottom: 20px; ">Delete</button>
+                    <a href="@Url.Action("Index", "SanPhamAdmin")" class="btn btn-info" style="margin-top: 20px; margin-bottom: 20px; ">Cancel</a>
+                </center>
+            </div>
+        }
+    </div>
+</div>
+

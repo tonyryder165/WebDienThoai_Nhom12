@@ -5,6 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .ck.ck-content ul,
+.ck.ck-content ul li {
+    list-style-type: inherit;
+}
+
+.ck.ck-content ul {
+    /* Default user agent stylesheet, you can change it to your needs. */
+    padding-left: 40px;
+}
+</style>
     <div id="page-content" class="single-page">
         <div class="container">
             <div class="row">
@@ -81,8 +92,8 @@
                             <li><a href="#review">Review</a></li>
                         </ul>
                         <div class="tab-content">
-                            <div id="description" class="tab-pane fade in active">
-                                <p>@Model.CauHinh</p>
+                            <div id="description" class="tab-pane fade in active ck ck-content">
+                                @Html.Raw(Model.CauHinh)
                             </div>
                             <div id="review" class="tab-pane fade">
                                 <div class="review-text">

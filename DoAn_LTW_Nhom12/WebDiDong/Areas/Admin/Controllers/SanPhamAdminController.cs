@@ -49,6 +49,7 @@ namespace WebDiDong.Areas.Admin.Controllers
 
         // POST: Admin/SanPham/Create
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Create(SanPham sp)
         {
             
@@ -61,12 +62,12 @@ namespace WebDiDong.Areas.Admin.Controllers
 
 
                     //Image
-                    string fileName = Path.GetFileNameWithoutExtension(sp.ImageFile.FileName);
-                    string extension = Path.GetExtension(sp.ImageFile.FileName);
+                    string fileName = Path.GetFileNameWithoutExtension(sp.HinHChinhFile.FileName);
+                    string extension = Path.GetExtension(sp.HinHChinhFile.FileName);
                     fileName = fileName + extension;
                     sp.HinhChinh = fileName;
                     fileName = Path.Combine(Server.MapPath("~/Asset/images/"), fileName);
-                    sp.ImageFile.SaveAs(fileName);
+                    sp.HinHChinhFile.SaveAs(fileName);
 
 
                     sp.LuotView = 0;
@@ -110,6 +111,7 @@ namespace WebDiDong.Areas.Admin.Controllers
 
         // POST: Admin/SanPham/Edit/5
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(int id, SanPham sp)
         {
             try
@@ -117,22 +119,34 @@ namespace WebDiDong.Areas.Admin.Controllers
                 int IsUpdate = 0;
                 DBDiDongEntities db = new DBDiDongEntities();
                 SanPham sanPham = db.SanPhams.Where<SanPham>(row => row.MaSanPham == sp.MaSanPham).FirstOrDefault();
+                var tam = sanPham.HinhChinh;
 
+                var test = sp.HinHChinhFile;
+                if(test != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(sp.HinHChinhFile.FileName);
+                    string extension = Path.GetExtension(sp.HinHChinhFile.FileName);
+                    fileName = fileName + extension;
+                    sp.HinhChinh = fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Asset/images/"), fileName);
+                    sp.HinHChinhFile.SaveAs(fileName);
 
+                    sanPham.HinhChinh = sp.HinhChinh;
+                }
+                else
+                {
+                    sanPham.HinhChinh = tam;
+                }
                 //Image
-                string fileName = Path.GetFileNameWithoutExtension(sp.ImageFile.FileName);
-                string extension = Path.GetExtension(sp.ImageFile.FileName);
-                fileName = fileName + extension;
-                sp.HinhChinh = fileName;
-                fileName = Path.Combine(Server.MapPath("~/Asset/images/"), fileName);
-                sp.ImageFile.SaveAs(fileName);
+                
 
 
                 sanPham.MaSanPham = sp.MaSanPham;
                 sanPham.TenSanPham = sp.TenSanPham;
                 sanPham.MaLoaiSanPham = sp.MaLoaiSanPham;
                 sanPham.MaNhaSanXuat = sp.MaNhaSanXuat;
-                sanPham.HinhChinh = sp.HinhChinh;
+
+                sanPham.CauHinh = sp.CauHinh;
                 sanPham.Gia = sp.Gia;
 
                 IsUpdate = db.SaveChanges();
@@ -156,23 +170,42 @@ namespace WebDiDong.Areas.Admin.Controllers
         // GET: Admin/SanPham/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            DBDiDongEntities db = new DBDiDongEntities();
+            SanPham sanPham = db.SanPhams.Where<SanPham>(row => row.MaSanPham == id).FirstOrDefault();
+            if (sanPham == null)
+            {
+                TempData["InfoMessage"] = "Product not available with ID " + id.ToString();
+                return RedirectToAction("Index");
+            }
+            return View(sanPham);
         }
 
         // POST: Admin/SanPham/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, SanPham sp)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                int IsDeleted = 0;
+                DBDiDongEntities db = new DBDiDongEntities();
+                SanPham sanPham = db.SanPhams.Where<SanPham>(row => row.MaSanPham == id).FirstOrDefault();
+                db.SanPhams.Remove(sanPham);
+                IsDeleted = db.SaveChanges();
+                if (IsDeleted == 1)
+                {
+                    TempData["SuccessMessage"] = "Bạn đã xóa thành công...!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Product is already available/ Unable to update the product details.";
+                }
             }
-            catch
+            catch (Exception ex)
             {
+                TempData["ErrorMessage"] = ex.Message;
                 return View();
             }
+            return RedirectToAction("Index");
         }
     }
 }

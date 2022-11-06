@@ -24,7 +24,7 @@
 
     <!-- Custom styles for this template-->
     <link href="~/Areas/Admin/AssetAdmin/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <script src="~/Areas/Admin/AssetAdmin/ckeditor5-build-classic/ckeditor.js"></script>
     <style>
 
     </style>
@@ -321,7 +321,7 @@
 
             </div>
             <!-- End of Main Content -->
-            <!-- Footer --> 
+            <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -378,6 +378,13 @@
     <script src="~/Areas/Admin/AssetAdmin/js/demo/chart-area-demo.js"></script>
     <script src="~/Areas/Admin/AssetAdmin/js/demo/chart-pie-demo.js"></script>
     <script src="~/Scripts/Custom/AutoHideAlert.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </body>
 
 </html>
