@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -32,13 +33,13 @@
     <![endif]-->
     <style>
         .ck.ck-content ul,
-        .ck.ck-content ul li{
+        .ck.ck-content ul li {
             list-style-type: inherit;
         }
 
         .ck.ck-content ul {
-          /* Default user agent stylesheet, you can change it to your needs. */
-          padding-left: 40px;
+            /* Default user agent stylesheet, you can change it to your needs. */
+            padding-left: 40px;
         }
     </style>
 </head>
@@ -62,15 +63,14 @@
                 </div>
                 <div class="col-xs-6">
                     <ul class="top-link">
-                        <li><a href="account.html"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
-                        <li><a href="contact.html"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
+                        @Html.Partial("_LoginPartial", WebDiDong.Models.BUS.ThongTinCaNhanBUS.LoadThongTin(User.Identity.GetUserId()))
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
     <!--Header-->
-    @{ 
+    @{
         var headerPartital = Html.Partial("_Header");
         headerPartital = new MvcHtmlString(headerPartital.ToString());
     }
@@ -100,5 +100,7 @@
     <!--//////////////////////////////////////////////////-->
     @RenderBody()
     @{ Html.RenderPartial("_Footer");}
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -9,6 +9,7 @@ namespace WebDiDong.Areas.Admin.Controllers
 {
     public class NhaSanXuatAdminController : Controller
     {
+        [Authorize(Roles = "Admin")]
         // GET: Admin/NhaSanXuat
         public ActionResult Index(string search = "", int page = 1)
         {

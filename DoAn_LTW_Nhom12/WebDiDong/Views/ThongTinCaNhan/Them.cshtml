@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Them";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Microsoft.AspNet.Identity;
+<style>
+
+    table {
+        border-collapse: collapse;
+        width: 70%;
+        margin: auto;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #2a9fd6;
+        color: white;
+    }
+</style>
+<div class="container-fluid">
+    <h2 class="text-center">Thông Tin Cá Nhân</h2>
+    @using (Html.BeginForm("Them", "ThongTinCaNhan", FormMethod.Post, new { @style = "width : 70%; margin: auto;" }))
+    {
+        <table border="0">
+            <tr>
+                <td style="color: black;">Mã Tài Khoản : </td>
+                <td style="color: black; width:100%; float:left; "><input style="width:100%" type="text" name="MaTaiKhoan" value="@User.Identity.GetUserId()" readonly /></td>
+            </tr>
+            <tr>
+                <td style="color: black">Tên Tài Khoản: </td>
+                <td><input type="text" style="width:100%" name="TenTaiKhoan" value="" required /> </td>
+            </tr>
+            <tr>
+                <td style="color: black">Ngày Sinh : </td>
+                <td><input type="date" min="1990-01-01" max="2020-01-01" style="width:100%" name="NgaySinh" value="" required /> </td>
+            </tr>
+            <tr>
+                <td style="color: black">Số Điện Thoại: </td>
+                <td><input type="number" maxlength="12" style="width:100%" name="SoDienThoai" value="" required /> </td>
+            </tr>
+            <tr>
+                <td style="color: black">Địa Chỉ : </td>
+                <td><input type="text" style="width:100%" name="DiaChi" value="" required /> </td>
+            </tr>
+            <tr>
+                <td style="color: black">Giới Tính: </td>
+                <td><input type="text" style="width:100%" name="GioiTinh" min="1" max="4" value="" required /> </td>
+            </tr>
+            <tr>
+                <td class="text-center" colspan="2"><input class="btn btn-success" type="submit" value="Lưu Lại" /></td>
+            </tr>
+
+        </table>
+    }
+</div>

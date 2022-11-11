@@ -10,6 +10,7 @@ namespace WebDiDong.Areas.Admin.Controllers
 {
     public class SanPhamAdminController : Controller
     {
+        [Authorize(Roles = "Admin")]
         // GET: Admin/SanPham
         public ActionResult Index(string search = "", int page = 1)
         {

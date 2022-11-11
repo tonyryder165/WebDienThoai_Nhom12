@@ -10,6 +10,17 @@
         <EntityTypeShape EntityType="DBDiDongModel.SanPham" Width="1.5" PointX="3" PointY="2.5" />
         <AssociationConnector Association="DBDiDongModel.FK_SanPham_LoaiSanPham" />
         <AssociationConnector Association="DBDiDongModel.FK_SanPham_NhaSanXuat" />
+        <EntityTypeShape EntityType="DBDiDongModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DBDiDongModel.AspNetRole" Width="1.5" PointX="5.75" PointY="2.5" />
+        <EntityTypeShape EntityType="DBDiDongModel.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="1" />
+        <EntityTypeShape EntityType="DBDiDongModel.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="3.75" />
+        <EntityTypeShape EntityType="DBDiDongModel.AspNetUser" Width="1.5" PointX="8" PointY="1.375" />
+        <EntityTypeShape EntityType="DBDiDongModel.sysdiagram" Width="1.5" PointX="0.75" PointY="7.75" />
+        <AssociationConnector Association="DBDiDongModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DBDiDongModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DBDiDongModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="DBDiDongModel.ThongTinCaNhan" Width="1.5" PointX="10.25" PointY="7.125" />
+        <AssociationConnector Association="DBDiDongModel.FK_ThongTinCaNhan_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

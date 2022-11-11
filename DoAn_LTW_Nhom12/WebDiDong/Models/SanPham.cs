@@ -20,8 +20,8 @@ namespace WebDiDong.Models
         public Nullable<int> MaNhaSanXuat { get; set; }
         public string TenSanPham { get; set; }
         public string CauHinh { get; set; }
-        public string HinhChinh { get; set; }
         public HttpPostedFileBase HinHChinhFile { get; set; }
+        public string HinhChinh { get; set; }
         public string Hinh1 { get; set; }
         public string Hinh2 { get; set; }
         public string Hinh3 { get; set; }
