@@ -1,0 +1,87 @@
+﻿@model WebDiDong.Models.ThongTinCaNhan
+
+@{
+    ViewBag.Title = "Sua";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error ! </strong> @TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+<style>
+
+    input[type=text], input[type=date] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .gt {
+        width: 30%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+</style>
+
+<div style="margin:auto;">
+    @using (Html.BeginForm("Sua", "TaiKhoanAdmin", FormMethod.Post, new { @style = "width : 50%; margin: auto;" }))
+    {
+        <label for="fname">Mã Tài Khoản</label>
+        <input type="text" id="fname" name="MaTaiKhoan" required value="@Model.MaTaiKhoan" readonly>
+
+        <label for="lname">Tên Tài Khoản</label>
+        <input type="text" id="lname" name="TenTaiKhoan" required value="@Model.TenTaiKhoan">
+
+        <label for="lname">Ngày Sinh</label>
+        <input type="date" id="lname" name="NgaySinh" min="1988-01-01" max="2022-12-31" required value="@Model.NgaySinh">
+
+        <label for="lname">Số Điện Thoại</label>
+        <input type="text" id="lname" name="SoDienThoai" required value="@Model.SoDienThoai">
+
+        <label for="lname">Địa Chỉ</label>
+        <input type="text" id="lname" name="DiaChi" required value="@Model.DiaChi">
+
+        <label for="lname">Giới Tính</label>
+        <select class="form-select gt" id="lLoai" name="GioiTinh" required>
+            <option value="">Xin hãy chọn...</option>
+            @if (Model.GioiTinh == "Nam")
+            {
+                <option value="Nam" selected>
+                    Nam
+                </option>
+                <option value="Nữ">
+                    Nữ
+                </option>
+            }
+            else
+            {
+                <option value="Nam">
+                    Nam
+                </option>
+                <option value="Nữ" selected>
+                    Nữ
+                </option>
+            }
+
+            }
+        </select>
+        <center>
+            <button type="submit" class="btn btn-success" style="margin-top: 20px; margin-bottom: 20px; ">Save</button>
+            <a href="@Url.Action("Index", "TaiKhoanAdmin")" class="btn btn-info">Cancel</a>
+        </center>
+    }
+</div>

@@ -178,7 +178,9 @@
     <Compile Include="Areas\Admin\Controllers\MainAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhaSanXuatAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaiKhoanAdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoaiSanPhamController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -223,6 +225,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataDiDongModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoaiSanPham.cs">
       <DependentUpon>DataDiDongModel.tt</DependentUpon>
@@ -2363,6 +2366,9 @@
     <Content Include="Areas\Admin\AssetAdmin\ckeditor5-build-classic\ckeditor.js.map" />
     <Content Include="Areas\Admin\AssetAdmin\ckeditor5-build-classic\LICENSE.md" />
     <Content Include="Areas\Admin\AssetAdmin\ckeditor5-build-classic\README.md" />
+    <Content Include="Areas\Admin\Views\TaiKhoanAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoanAdmin\Sua.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoanAdmin\Delete.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\AutoHideAlert.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -2377,7 +2383,6 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoaiSanPham.cshtml" />
     <Content Include="Views\Shared\_NhaSanXuat.cshtml" />
@@ -2420,6 +2425,9 @@
     <Content Include="Views\Shared\_ThongTinCaNhan.cshtml" />
     <Content Include="Views\ThongTinCaNhan\Them.cshtml" />
     <Content Include="Views\ThongTinCaNhan\Index.cshtml" />
+    <Content Include="Views\Shared\_GioHang.cshtml" />
+    <Content Include="Views\GioHang\Index.cshtml" />
+    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

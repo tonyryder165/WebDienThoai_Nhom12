@@ -20,6 +20,9 @@ namespace WebDiDong.Controllers
         }
         public ActionResult Them()
         {
+            DBDiDongEntities db = new DBDiDongEntities();
+
+            ViewBag.GioiTinh = db.ThongTinCaNhans.ToList();
             return View();
         }
         [HttpPost]

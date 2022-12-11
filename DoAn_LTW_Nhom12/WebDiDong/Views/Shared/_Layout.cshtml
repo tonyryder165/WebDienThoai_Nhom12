@@ -55,11 +55,7 @@
                         <option value="France">France</option>
                         <option value="Germany">Germany</option>
                     </select>
-                    <select class="currency">
-                        <option value="USD" selected>USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="DDD">DDD</option>
-                    </select>
+                    <span class="currency"><a href="../Admin/MainAdmin">Đến trang Admin</a></span>
                 </div>
                 <div class="col-xs-6">
                     <ul class="top-link">
@@ -70,11 +66,20 @@
         </div>
     </nav>
     <!--Header-->
-    @{
-        var headerPartital = Html.Partial("_Header");
-        headerPartital = new MvcHtmlString(headerPartital.ToString());
-    }
-    @headerPartital
+    <header class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div id="logo"><a href="/Home"><img src="~/Asset/images/logo.png" /></a></div>
+            </div>
+            <div class="col-md-4">
+                <form class="form-search">
+                    <input type="text" class="input-medium search-query">
+                    <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+                </form>
+            </div>
+            @Html.Action("GioHangPartial", "GioHang")
+        </div>
+    </header>
 
     <!--Navigation-->
     <nav id="menu" class="navbar bg-gradient-dark">

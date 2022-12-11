@@ -115,7 +115,7 @@
     <Property Name="SoDienThoai" Type="char" MaxLength="10" />
     <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
     <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
-    <Property Name="NgaySinh" Type="date" />
+    <Property Name="NgaySinh" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">

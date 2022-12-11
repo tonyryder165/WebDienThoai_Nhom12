@@ -20,7 +20,7 @@ namespace WebDiDong.Models
         public string SoDienThoai { get; set; }
         public string DiaChi { get; set; }
         public string GioiTinh { get; set; }
-        public Nullable<System.DateTime> NgaySinh { get; set; }
+        public string NgaySinh { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }

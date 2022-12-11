@@ -120,7 +120,7 @@
           <Property Name="SoDienThoai" Type="char" MaxLength="10" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
           <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
-          <Property Name="NgaySinh" Type="date" />
+          <Property Name="NgaySinh" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -477,7 +477,7 @@
           <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="NgaySinh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AspNetUser" Relationship="DBDiDongModel.FK_ThongTinCaNhan_AspNetUsers" FromRole="ThongTinCaNhan" ToRole="AspNetUser" />
         </EntityType>
         <Association Name="FK_ThongTinCaNhan_AspNetUsers">
