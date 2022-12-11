@@ -2369,6 +2369,7 @@
     <Content Include="Areas\Admin\Views\TaiKhoanAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\TaiKhoanAdmin\Sua.cshtml" />
     <Content Include="Areas\Admin\Views\TaiKhoanAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoanAdmin\CapQuyen.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\AutoHideAlert.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

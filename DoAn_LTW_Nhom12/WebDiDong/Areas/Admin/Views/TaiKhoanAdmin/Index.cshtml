@@ -74,7 +74,7 @@ else if (TempData["ErrorMessage"] != null)
                         <td>@item.GioiTinh</td>
                         <td><a href="@Url.Action("Delete","TaiKhoanAdmin", new { id = @item.AspNetUser.Id })">Xóa</a></td>
                         <td><a href="@Url.Action("Sua","TaiKhoanAdmin", new { id = @item.id })">Sửa</a></td>
-                        <td><a href="@Url.Action("CapQuyen","TaiKhoanAdmin", new { id = @item.id })">Cấp Quyền</a></td>
+                        <td><a href="@Url.Action("CapQuyen","TaiKhoanAdmin", new { id = @item.AspNetUser.Id })">Cấp Quyền</a></td>
 
                     </tr>
                     }

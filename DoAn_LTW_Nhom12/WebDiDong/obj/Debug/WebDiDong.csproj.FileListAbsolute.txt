@@ -353,6 +353,7 @@ C:\Users\Sang\Desktop\WorkSpace\Git\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDon
 C:\Users\Sang\Desktop\WorkSpace\Git\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Sang\Desktop\WorkSpace\Git\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Sang\Desktop\WorkSpace\Git\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.csprojAssemblyReference.cache
+C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\WebDiDong.dll.config
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\WebDiDong.dll
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\WebDiDong.pdb
@@ -367,7 +368,6 @@ C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\ros
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\roslyn\Microsoft.CSharp.Core.targets
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
@@ -455,8 +455,8 @@ C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\Sys
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\Newtonsoft.Json.xml
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\Antlr3.Runtime.pdb
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.csproj.AssemblyReference.cache
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.csproj.CoreCompileInputs.cache
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.csproj.CopyComplete
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.dll
 C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.pdb
+C:\Users\Sang\Desktop\AAAA\WebDienThoai_Nhom12\DoAn_LTW_Nhom12\WebDiDong\obj\Debug\WebDiDong.csproj.AssemblyReference.cache

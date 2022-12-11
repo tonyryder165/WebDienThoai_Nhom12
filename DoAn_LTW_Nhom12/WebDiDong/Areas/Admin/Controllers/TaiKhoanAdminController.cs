@@ -126,6 +126,52 @@ namespace WebDiDong.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
-        
+
+        public ActionResult CapQuyen(string id)
+        {
+            var br = new DBDiDongEntities();
+            AspNetUser aspNetUser = br.AspNetUsers.Where<AspNetUser>(row => row.Id == id).FirstOrDefault();
+            string check = br.Database.SqlQuery<string>("select RoleId from AspNetUserRoles where UserId = '" + id + "'").FirstOrDefault();
+            if (check == "a791d34b-e28b-472e-a5bf-ed093343d276")
+            {
+                ViewBag.CapQuyen = "Admin";
+            }
+            else ViewBag.CapQuyen = "Dân";
+
+
+            return View(aspNetUser);
+        }
+
+        [HttpPost]
+        public ActionResult CapQuyen(string id, string CapQuyen)
+        {
+            var br = new DBDiDongEntities();
+            string check = br.Database.SqlQuery<string>("select RoleId from AspNetUserRoles where UserId = '" + id + "'").FirstOrDefault();
+            if (check != "a791d34b-e28b-472e-a5bf-ed093343d276")
+            {
+                if (CapQuyen == "Admin")
+                {
+                    // tạo mới
+                    int them = br.Database.ExecuteSqlCommand("insert into AspNetUserRoles(UserId, RoleId) values('"+ id + "', 'a791d34b-e28b-472e-a5bf-ed093343d276')");
+                    if (them == 1)
+                    {
+                        TempData["SuccessMessage"] = "Bạn đã cập nhật quyền thành công...!";
+                    }
+                }
+            }
+            else
+            {
+                int xoa = br.Database.ExecuteSqlCommand("delete from AspNetUserRoles where UserId = '" + id + "'");
+                if (xoa == 1)
+                {
+                    TempData["SuccessMessage"] = "Bạn đã cập nhật quyền thành công...!";
+                }
+            }
+
+            
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

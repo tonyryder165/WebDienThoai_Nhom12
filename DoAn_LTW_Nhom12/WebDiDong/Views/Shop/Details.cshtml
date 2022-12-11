@@ -78,7 +78,7 @@
                                 </select>
                             </div>
                             <div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
-                            <div class="well"><label>Qty: </label> <input class="form-inline quantity" type="text" value="1"><a href="#" class="btn btn-2 ">ADD</a></div>
+                            <div class="well"><label>Qty: </label> <input class="form-inline quantity" type="text" value="1"><a href="@Url.Action("ThemGioHang", "GioHang", new { @msp = Model.MaSanPham, @strURL = Request.Url.ToString()})" class="btn btn-2 ">Thêm vào giỏ</a></div>
                             <div class="share well">
                                 <strong style="margin-right: 13px;">Share :</strong>
                                 <a href="#" class="share-btn" target="_blank">

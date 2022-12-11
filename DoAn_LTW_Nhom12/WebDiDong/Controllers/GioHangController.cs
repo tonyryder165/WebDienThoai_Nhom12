@@ -57,6 +57,14 @@ namespace WebDiDong.Controllers
             }
         }
 
+        public ActionResult XoaGioHang(int msp, string strURL)
+        {
+            List<GioHang> lstGioHang = LayGioHang();
+            GioHang SanPham = lstGioHang.Find(sp => sp.sMaSanPham == msp);
+            lstGioHang.Remove(SanPham);
+            return Redirect(strURL);
+        }
+
         private int TongSoLuong()
         {
             int tsl = 0;

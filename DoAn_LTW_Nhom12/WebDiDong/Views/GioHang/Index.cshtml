@@ -43,7 +43,7 @@
                         <td>@item.iSoLuong</td>
                         <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", @item.dDonGia) VNĐ</td>
                         <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", @item.dThanhTien) VNĐ</td>
-                        <td><a href="@Url.Action("Details", "Shop", new { id = @item.sMaSanPham })">Detail</a></td>
+                        <td><a href="@Url.Action("Details", "Shop", new { id = @item.sMaSanPham })">Detail</a>|<a href="@Url.Action("XoaGioHang", "GioHang", new { @msp = @item.sMaSanPham, @strURL = Request.Url.ToString()})">Xóa</a></td>
                     </tr>
                 }
 
