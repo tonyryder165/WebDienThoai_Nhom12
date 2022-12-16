@@ -1,6 +1,5 @@
-﻿@using WebDiDong.Models;
-@model List<GioHang>
+﻿@model IEnumerable<WebDiDong.Models.GioHang>
 
-<div class="col-md-4">
-    <div id="cart"><a class="btn btn-1" href="/GioHang/Index"><span class="glyphicon glyphicon-shopping-cart"></span>CART : @Model.Count() ITEM</a></div>
-</div>
+    <div class="col-md-4" style="float:right">
+        <div id="cart"><a class="btn btn-1" href="@Url.Action("Index", "GioHang")"><span class="glyphicon glyphicon-shopping-cart"></span>CART : @Model.Count() ITEM</a></div>
+    </div>

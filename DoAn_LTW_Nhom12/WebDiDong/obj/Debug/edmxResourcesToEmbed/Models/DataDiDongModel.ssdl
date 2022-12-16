@@ -61,6 +61,43 @@
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
+  <EntityType Name="ChiTietHoaDon">
+    <Key>
+      <PropertyRef Name="MaSanPham" />
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="MaSanPham" Type="int" Nullable="false" />
+    <Property Name="OrderID" Type="int" Nullable="false" />
+    <Property Name="TenSanPham" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="Gia" Type="int" />
+    <Property Name="TongTien" Type="int" />
+  </EntityType>
+  <EntityType Name="GioHang">
+    <Key>
+      <PropertyRef Name="IdGH" />
+    </Key>
+    <Property Name="IdGH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaTaiKhoan" Type="nchar" MaxLength="128" />
+    <Property Name="MaSanPham" Type="int" />
+    <Property Name="TenSanPham" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="Gia" Type="int" />
+    <Property Name="TongTien" Type="int" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayTao" Type="datetime" />
+    <Property Name="NguoiDat" Type="nvarchar" MaxLength="128" />
+    <Property Name="NguoiNhan" Type="nvarchar" MaxLength="50" />
+    <Property Name="SDT" Type="varchar" MaxLength="50" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
+    <Property Name="TongTien" Type="bigint" />
+    <Property Name="TrangThai" Type="int" />
+  </EntityType>
   <EntityType Name="LoaiSanPham">
     <Key>
       <PropertyRef Name="MaLoaiSanPham" />
@@ -93,6 +130,7 @@
     <Property Name="SoLuongDaBan" Type="int" />
     <Property Name="LuotView" Type="int" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoLuong" Type="int" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -117,6 +155,30 @@
     <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
     <Property Name="NgaySinh" Type="varchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_ChiTietHoaDon_HoaDon">
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+    <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDon">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ChiTietHoaDon">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHoaDon_SanPham">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSanPham" />
+      </Principal>
+      <Dependent Role="ChiTietHoaDon">
+        <PropertyRef Name="MaSanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -173,6 +235,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_HoaDon_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="NguoiDat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SanPham_LoaiSanPham">
     <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
@@ -220,11 +294,22 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GioHang" EntityType="Self.GioHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NhaSanXuat" EntityType="Self.NhaSanXuat" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ThongTinCaNhan" EntityType="Self.ThongTinCaNhan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ChiTietHoaDon_HoaDon" Association="Self.FK_ChiTietHoaDon_HoaDon">
+      <End Role="HoaDon" EntitySet="HoaDon" />
+      <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHoaDon_SanPham" Association="Self.FK_ChiTietHoaDon_SanPham">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -240,6 +325,10 @@
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDon_AspNetUsers" Association="Self.FK_HoaDon_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
     </AssociationSet>
     <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="Self.FK_SanPham_LoaiSanPham">
       <End Role="LoaiSanPham" EntitySet="LoaiSanPham" />

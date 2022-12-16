@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -47,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -98,6 +97,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -106,6 +108,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.9\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -173,7 +181,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HoaDonAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiSanPhamAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\MainAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhaSanXuatAdminController.cs" />
@@ -186,7 +196,9 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NhaSanXuatController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\ThanhToanController.cs" />
     <Compile Include="Controllers\ThongTinCaNhanController.cs" />
+    <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,10 +215,16 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>DataDiDongModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BUS\GioHangBUS.cs" />
     <Compile Include="Models\BUS\LoaiSanPhamBUS.cs" />
     <Compile Include="Models\BUS\NhaSanXuatBUS.cs" />
     <Compile Include="Models\BUS\ShopOnlineBUS.cs" />
+    <Compile Include="Models\BUS\ThanhToanBUS.cs" />
     <Compile Include="Models\BUS\ThongTinCaNhanBUS.cs" />
+    <Compile Include="Models\BUS\TimKiemBUS.cs" />
+    <Compile Include="Models\ChiTietHoaDon.cs">
+      <DependentUpon>DataDiDongModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>DataDiDongModel.tt</DependentUpon>
     </Compile>
@@ -225,7 +243,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataDiDongModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\GioHang.cs">
+      <DependentUpon>DataDiDongModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HoaDon.cs">
+      <DependentUpon>DataDiDongModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoaiSanPham.cs">
       <DependentUpon>DataDiDongModel.tt</DependentUpon>
@@ -333,10 +356,13 @@
     <Content Include="Areas\Admin\AssetAdmin\img\undraw_profile_2.svg" />
     <Content Include="Areas\Admin\AssetAdmin\img\undraw_profile_3.svg" />
     <Content Include="Areas\Admin\AssetAdmin\img\undraw_rocket.svg" />
+    <Content Include="Areas\Admin\AssetAdmin\js\bootstrap.min.js" />
     <Content Include="Areas\Admin\AssetAdmin\js\demo\chart-area-demo.js" />
     <Content Include="Areas\Admin\AssetAdmin\js\demo\chart-bar-demo.js" />
     <Content Include="Areas\Admin\AssetAdmin\js\demo\chart-pie-demo.js" />
     <Content Include="Areas\Admin\AssetAdmin\js\demo\datatables-demo.js" />
+    <Content Include="Areas\Admin\AssetAdmin\js\HoaDon.js" />
+    <Content Include="Areas\Admin\AssetAdmin\js\jquery-1.10.2.min.js" />
     <Content Include="Areas\Admin\AssetAdmin\js\sb-admin-2.js" />
     <Content Include="Areas\Admin\AssetAdmin\js\sb-admin-2.min.js" />
     <Content Include="Areas\Admin\AssetAdmin\vendor\bootstrap\js\bootstrap.bundle.js" />
@@ -2370,6 +2396,7 @@
     <Content Include="Areas\Admin\Views\TaiKhoanAdmin\Sua.cshtml" />
     <Content Include="Areas\Admin\Views\TaiKhoanAdmin\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\TaiKhoanAdmin\CapQuyen.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDonAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\AutoHideAlert.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -2428,7 +2455,9 @@
     <Content Include="Views\ThongTinCaNhan\Index.cshtml" />
     <Content Include="Views\Shared\_GioHang.cshtml" />
     <Content Include="Views\GioHang\Index.cshtml" />
-    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem.cshtml" />
+    <Content Include="Views\Shared\Image.cshtml" />
+    <Content Include="Views\ThanhToan\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2476,10 +2505,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

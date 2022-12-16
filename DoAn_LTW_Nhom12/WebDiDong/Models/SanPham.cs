@@ -15,6 +15,12 @@ namespace WebDiDong.Models
 
     public partial class SanPham
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SanPham()
+        {
+            this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
+        }
+    
         public int MaSanPham { get; set; }
         public Nullable<int> MaLoaiSanPham { get; set; }
         public Nullable<int> MaNhaSanXuat { get; set; }
@@ -22,6 +28,7 @@ namespace WebDiDong.Models
         public string CauHinh { get; set; }
         public string HinhChinh { get; set; }
         public HttpPostedFileBase HinHChinhFile { get; set; }
+
         public string Hinh1 { get; set; }
         public string Hinh2 { get; set; }
         public string Hinh3 { get; set; }
@@ -30,7 +37,10 @@ namespace WebDiDong.Models
         public Nullable<int> SoLuongDaBan { get; set; }
         public Nullable<int> LuotView { get; set; }
         public string GhiChu { get; set; }
+        public Nullable<int> SoLuong { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual LoaiSanPham LoaiSanPham { get; set; }
         public virtual NhaSanXuat NhaSanXuat { get; set; }
     }

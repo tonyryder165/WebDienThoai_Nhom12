@@ -1,0 +1,103 @@
+﻿@model IEnumerable<WebDiDong.Models.SanPham>
+@{
+    ViewBag.Title = "KetQuaTimKiem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="page-content" class="single-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Sản Phẩm", "Index", "Shop")</li>
+                </ul>
+            </div>
+            @if (ViewBag.Check == 0)
+            {
+                <p class="text-center text-danger" style="font-size: 30px">@ViewBag.ThongBao</p>
+            }
+        </div>
+        <div class="row">
+            <div id="main-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="products">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-lg-4 col-md-3 col-xs-12">
+                                    <div class="product">
+                                        <div class="image"><a href="@Url.Action("Details","Shop", new { id = @item.MaSanPham})"><img style="width: 250px; height: 250px" src="~/Asset/images/@item.HinhChinh" /></a></div>
+                                        <div class="buttons">
+                                            @using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="tensanpham" value="@item.TenSanPham" />
+                                                <input type="hidden" name="masanpham" value="@item.MaSanPham" />
+                                                <input type="hidden" value="1" name="soluong" />
+                                                <input type="hidden" name="gia" value="@item.Gia" />
+                                                <input type="submit" class="btn btn-2" value="Thêm vào giỏ">
+                                            }                                            <a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
+                                            <a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
+                                        </div>
+                                        <div class="caption">
+                                            <div class="name"><h3><a href="@Url.Action("Details","Shop", new { id = @item.MaSanPham})">@item.TenSanPham</a></h3></div>
+                                            <div class="price text-danger">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", item.Gia) VNĐ</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @{
+                    int PrevPage = ViewBag.Page - 1;
+                    if (PrevPage <= 0)
+                    {
+                        PrevPage = 1;
+                    }
+                    int NextPage = ViewBag.Page + 1;
+                    if (NextPage > ViewBag.NoOfPages)
+                    {
+                        NextPage = ViewBag.NoOfPages;
+                    }
+                }
+                <center>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="/TimKiem/KetQuaTimKiem?page=@PrevPage&search=@ViewBag.Search">
+                                <<
+                            </a>
+                        </li>
+                        @for (int i = 0; i < ViewBag.NoOfPages; i++)
+                        {
+                            if (i + 1 == ViewBag.Page)
+                            {
+                                <li class="page-item active">
+                                    <a class="page-link" href="/TimKiem/KetQuaTimKiem?page=@(i+1)&search=@ViewBag.Search">
+                                        @(i + 1)
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/TimKiem/KetQuaTimKiem?page=@(i+1)&search=@ViewBag.Search">
+                                        @(i + 1)
+                                    </a>
+                                </li>
+                            }
+                        }
+                        <li class="page-item">
+                            <a class="page-link" href="/TimKiem/KetQuaTimKiem?page=@NextPage&search=@ViewBag.Search">
+                                >>
+                            </a>
+                        </li>
+                    </ul>
+                </center>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,169 @@
+﻿@model IEnumerable<WebDiDong.Models.HoaDon>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info">
+        <strong>Information : </strong> @TempData["InfoMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+else if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success ! </strong> @TempData["SuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error ! </strong> @TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Loại Sản Phẩm</h6>
+    </div>
+    <form style="margin-left: 49px; margin-top: 27px;">
+        <label for="search"></label>
+        <input type="search"
+               class="form-control"
+               id="search"
+               name="search"
+               placeholder="Search"
+               style="width: 200px; display: inline;"
+               value="@ViewBag.Search" />
+        <button type="submit" class="btn btn-primary mx-2">Go</button>
+    </form>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ngày Tạo</th>
+                        <th>Người nhận</th>
+                        <th>Sô điện thoại</th>
+                        <th>Địa Chỉ</th>
+                        <th>Tổng Tiền</th>
+                        <th>Tình Trạng</th>
+                        <th class="text-center" colspan="3">Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ID</td>
+                            <td>@item.NgayTao</td>
+                            <td>@item.NguoiNhan</td>
+                            <td>@item.SDT</td>
+                            <td>@item.DiaChi</td>
+                            <td>@item.TongTien</td>
+                            @*Trạng thái  0:chưa duyệt , 1 : đang giao , 2 : đã giao, 3 : đã hủy ()*@
+                            @switch (item.TrangThai)
+                            {
+                                case 0:
+                                    <td>Chưa duyệt</td>
+
+                                    break;
+                                case 1:
+                                    <td>Đang giao</td>
+                                    break;
+                                case 2:
+                                    <td>Đã giao</td>
+                                    break;
+                                case 3:
+                                    <td>Đã hủy</td>
+                                    break;
+                            }
+                            @*@Html.Partial("_ChiTietHoaDon", DoAn_ShopOnline.Models.BUS.ThanhToanBUS.ChiTietHoaDon(item.ID))*@
+                            @*<td><a href="#" data-id="@item.ID" class="btn-images"></a></td>*@
+
+                            @*<td>
+                                <input type="hidden" value="@item.ID" id="mahoadon" />
+                                <a href="#" data-id="@item.ID" class="btn-chitiet"><span class="glyphicon glyphicon-folder-open">Chi tiết</span></a>
+
+                            </td>*@
+
+                            <td colspan="2">
+                                <form action="@Url.Action("CapNhat", "HoaDonAdmin")" method="get">
+                                    <input type="hidden" name="mahoadon" value="@item.ID" />
+                                    <select name="trangthai" class="btn btn-info">
+                                        <option value="0" selected hidden>Vui lòng chọn</option>
+                                        <option value="0">Chưa duyệt</option>
+                                        <option value="1">Đang giao</option>
+                                        <option value="2">Đã giao</option>
+                                        <option value="3">Đã hủy</option>
+                                    </select>
+                                    <input type="submit" class="btn btn-info" value="Sửa" />
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    @{
+        int PrevPage = ViewBag.Page - 1;
+        if (PrevPage <= 0)
+        {
+            PrevPage = 1;
+        }
+        int NextPage = ViewBag.Page + 1;
+        if (NextPage > ViewBag.NoOfPages)
+        {
+            NextPage = ViewBag.NoOfPages;
+        }
+    }
+
+
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="/Admin/HoaDon?page=@PrevPage&search=@ViewBag.Search">
+                <<
+            </a>
+        </li>
+        @for (int i = 0; i < ViewBag.NoOfPages; i++)
+        {
+            if (i + 1 == ViewBag.Page)
+            {
+                <li class="page-item active">
+                    <a class="page-link" href="/Admin/HoaDon?page=@(i+1)&search=@ViewBag.Search">
+                        @(i + 1)
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/Admin/HoaDon?page=@(i+1)&search=@ViewBag.Search">
+                        @(i + 1)
+                    </a>
+                </li>
+            }
+        }
+        <li class="page-item">
+            <a class="page-link" href="/Admin/HoaDon?page=@NextPage&search=@ViewBag.Search">
+                >>
+            </a>
+        </li>
+    </ul>
+</div>
+

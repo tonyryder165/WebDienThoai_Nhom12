@@ -78,8 +78,15 @@
                                 </select>
                             </div>
                             <div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
-                            <div class="well"><label>Qty: </label> <input class="form-inline quantity" type="text" value="1"><a href="@Url.Action("ThemGioHang", "GioHang", new { @msp = Model.MaSanPham, @strURL = Request.Url.ToString()})" class="btn btn-2 ">Thêm vào giỏ</a></div>
-                            <div class="share well">
+                             @using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                             {
+                                <input type="hidden" name="tensanpham" value="@Model.TenSanPham" />
+                                <input type="hidden" name="masanpham" value="@Model.MaSanPham" />
+                                <input type="hidden" name="gia" value="@Model.Gia" />
+                                <label>Số Lượng: </label> <input class="form-inline quantity" style="width: 65px;" type="number" value="1" min="1" max="1000" name="soluong" />
+                                <input type="submit" class="btn btn-2" value="Thêm vào giỏ">
+                             }
+                            <div class="share well" style="margin-top: 20px;">
                                 <strong style="margin-right: 13px;">Share :</strong>
                                 <a href="#" class="share-btn" target="_blank">
                                     <i class="fa fa-twitter"></i>

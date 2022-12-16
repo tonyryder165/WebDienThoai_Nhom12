@@ -13,7 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <script src="~/Areas/Admin/AssetAdmin/js/jquery-1.10.2.min.js"></script>
+    <script src="~/Areas/Admin/AssetAdmin/js/bootstrap.min.js"></script>
     <title>Dashboard Admin</title>
 
 
@@ -25,8 +26,9 @@
     <!-- Custom styles for this template-->
     <link href="~/Areas/Admin/AssetAdmin/css/sb-admin-2.min.css" rel="stylesheet">
     <script src="~/Areas/Admin/AssetAdmin/ckeditor5-build-classic/ckeditor.js"></script>
+    <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/gridData.js"></script>
     <style>
-
     </style>
 
 </head>
@@ -90,6 +92,12 @@
                 <a class="nav-link" href="@Url.Action("Index", "TaiKhoanAdmin")">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Quản Lý Tài Khoản</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index", "HoaDonAdmin")">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Quản Lý Đơn Hàng</span>
                 </a>
             </li>
 
@@ -331,7 +339,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Group 12 - 2022</span>
                     </div>
                 </div>
             </footer>
@@ -367,10 +375,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="~/Areas/Admin/AssetAdmin/vendor/jquery/jquery.min.js"></script>
-    <script src="~/Areas/Admin/AssetAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <!-- Core plugin JavaScript-->
     <script src="~/Areas/Admin/AssetAdmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -379,10 +383,10 @@
 
     <!-- Page level plugins -->
     <script src="~/Areas/Admin/AssetAdmin/vendor/chart.js/Chart.min.js"></script>
-
     <!-- Page level custom scripts -->
     <script src="~/Areas/Admin/AssetAdmin/js/demo/chart-area-demo.js"></script>
     <script src="~/Areas/Admin/AssetAdmin/js/demo/chart-pie-demo.js"></script>
+    <script src="~/Areas/Admin/AssetAdmin/js/HoaDon.js"></script>
     <script src="~/Scripts/Custom/AutoHideAlert.js"></script>
     <script>
         ClassicEditor
@@ -392,5 +396,4 @@
             });
     </script>
 </body>
-
 </html>

@@ -1,11 +1,10 @@
-﻿
+﻿@model IEnumerable<WebDiDong.Models.GioHang>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using WebDiDong.Models;
-@model List<GioHang>
+
 
 <div id="page-content" class="single-page">
     <div class="container-fluid">
@@ -17,10 +16,10 @@
                 </ul>
             </div>
         </div>
-        @if (Model.Count == 0)
-        {
-            <p class="text-center text-danger" style="font-size: 30px">@ViewBag.ThongBao</p>
-        }
+        @if (Model.Count() == 0)
+            {
+                <p class="text-center text-danger" style="font-size: 30px">Giỏ hàng hiện chưa có sản phẩm nào!</p>
+            }
 
         <h2 class="text-center">GIỎ HÀNG CỦA BẠN</h2>
         <div class="card boder-dark">
@@ -37,13 +36,19 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.sMaSanPham</td>
-                        <td>@item.sTenSanPham</td>
-                        <td><img style="width: 50%;" src="~/Asset/images/@item.sAnhBia" /></td>
-                        <td>@item.iSoLuong</td>
-                        <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", @item.dDonGia) VNĐ</td>
-                        <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", @item.dThanhTien) VNĐ</td>
-                        <td><a href="@Url.Action("Details", "Shop", new { id = @item.sMaSanPham })">Detail</a>|<a href="@Url.Action("XoaGioHang", "GioHang", new { @msp = @item.sMaSanPham, @strURL = Request.Url.ToString()})">Xóa</a></td>
+                        @using (Html.BeginForm("CapNhat", "GioHang", FormMethod.Post))
+                        {
+                            <input type="hidden" name="masanpham" value="@item.MaSanPham" />
+                            <input type="hidden" name="tensanpham" value="@item.TenSanPham" />
+                            <input type="hidden" name="gia" value="@item.Gia" />
+                            <td>@item.MaSanPham</td>
+                            <td>@item.TenSanPham</td>
+                            @Html.Partial("Image", WebDiDong.Models.BUS.GioHangBUS.Image(item.MaSanPham.ToString()))
+                            <td><label>Số lượng : </label> <input style="width: 60px; " class="form-inline quantity" min="1" max="1000" type="number" value="@item.SoLuong" name="soluong"><input type="submit" class="btn btn-2" value="Update" /></td>
+                            <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", @item.Gia) VNĐ</td>
+                            <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", @item.TongTien) VNĐ</td>
+                            <td><a href="@Url.Action("Details", "Shop", new { id = @item.MaSanPham })">Detail</a>|<a href="@Url.Action("Xoa","GioHang",new { masanpham= item.MaSanPham})">Xóa</a></td>
+                        }
                     </tr>
                 }
 
@@ -53,7 +58,7 @@
                     <td colspan="3" style="color: blue; font-weight: bold; text-align: right;">Tổng cộng:</td>
                     <td style="color: red; font-weight: bold;">@ViewBag.TongSoLuong</td>
                     <td></td>
-                    <td style="color: red; font-weight: bold;">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", ViewBag.TongThanhTien) VNĐ</td>
+                    <td style="color: red; font-weight: bold;">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", ViewBag.TongTien) VNĐ</td>
                     <td></td>
                 </tr>
             </table>
@@ -61,7 +66,7 @@
             <div class="row">
                 <center>
                     <div class="" style="margin-bottom: 50px">
-                        <a href="#!" class="btn btn-danger" style="width: 300px; line-height: 2.5; font-size: larger; margin-right: 20px;">Tiến Hành Đặt Hàng</a>
+                        <a href="@Url.Action("index", "ThanhToan")" class="btn btn-danger" style="width: 300px; line-height: 2.5; font-size: larger; margin-right: 20px;">Tiến Hành Đặt Hàng</a>
                         <a href="@Url.Action("index","Shop")" class="btn btn-info" style="width: 300px; line-height: 2.5; font-size: larger; margin-left: 20px;">Chọn thêm sản phẩm khác</a>
                     </div>
                 </center>

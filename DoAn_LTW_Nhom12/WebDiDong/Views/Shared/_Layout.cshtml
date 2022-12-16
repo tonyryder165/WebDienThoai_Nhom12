@@ -72,12 +72,15 @@
                 <div id="logo"><a href="/Home"><img src="~/Asset/images/logo.png" /></a></div>
             </div>
             <div class="col-md-4">
-                <form class="form-search">
-                    <input type="text" class="input-medium search-query">
+                <form class="form-search" action="~/TimKiem/KetQuaTimKiem">
+                    <input type="text" class="input-medium search-query" name="search" placeholder="Nhập tên sản phẩm" value="@ViewBag.Search">
                     <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
                 </form>
             </div>
-            @Html.Action("GioHangPartial", "GioHang")
+            @if (User.Identity.IsAuthenticated)
+            {
+                @Html.Partial("_GioHang", WebDiDong.Models.BUS.GioHangBUS.DanhSach(User.Identity.GetUserId()));
+            }
         </div>
     </header>
 

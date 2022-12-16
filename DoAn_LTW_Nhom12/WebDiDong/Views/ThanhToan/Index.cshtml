@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebDiDong.Models.GioHang>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center text-info">Phiếu Đặt Hàng : </h1>
+<form style="width:100%; margin:auto;" method="post" action="~/ThanhToan/Them">
+    <input type="Text" style="height:50px; width:50%; margin-left:25%;" maxlength="50" placeholder="Nhập tên người nhận" required name="nguoinhan" /> <br />
+    <input type="number" style="margin:20px 0; height: 50px; width: 50%; margin-left: 25%;" maxlength="12" placeholder="Nhập số điện thoại người nhận" required name="sdt" /> <br />
+    <input type="Text" style="height: 50px; width: 50%; margin-left: 25%;" maxlength="50" placeholder="Nhập địa chỉ người nhận" required name="diachi" /> <br />
+    <span style="margin-top: 20px; display:block; width:50%;font-size: 30px; margin-left:25%;" name="tongtien">Tổng tiền : <span class="text-danger">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", @ViewBag.TongTien) VNĐ</span></span><br />
+    <input class="btn btn-success" style="height: 60px; font-size: 28px; width: 50%; margin-left: 25%; " type="submit" value="Đặt hàng" />
+</form>
+<hr style="height:40px;" />
+
+<div class="row">
+    <div class="col-md-12">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="product well" style="width: 500px;">
+                    <div class="col-md-3">
+                        <div class="image" style="width: 200px;">
+                            @Html.Partial("Image", WebDiDong.Models.BUS.GioHangBUS.Image(item.MaSanPham.ToString()))
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="caption" style="font-size: 20px;">
+
+                            <label>Số lượng : </label> <span>@item.SoLuong</span> <br />
+                            <span>Tổng tiền : <span class="text-danger">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:0,0}", item.TongTien) VNĐ</span></span>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+         }
+    </div>
+</div>
+
+

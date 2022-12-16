@@ -1,23 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DBDiDongModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="DBDiDongEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="LoaiSanPhams" EntityType="DBDiDongModel.LoaiSanPham" />
-    <EntitySet Name="NhaSanXuats" EntityType="DBDiDongModel.NhaSanXuat" />
-    <EntitySet Name="SanPhams" EntityType="DBDiDongModel.SanPham" />
-    <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="DBDiDongModel.FK_SanPham_LoaiSanPham">
-      <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
-      <End Role="SanPham" EntitySet="SanPhams" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SanPham_NhaSanXuat" Association="DBDiDongModel.FK_SanPham_NhaSanXuat">
-      <End Role="NhaSanXuat" EntitySet="NhaSanXuats" />
-      <End Role="SanPham" EntitySet="SanPhams" />
-    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="DBDiDongModel.sysdiagram" />
     <EntitySet Name="C__MigrationHistory" EntityType="DBDiDongModel.C__MigrationHistory" />
     <EntitySet Name="AspNetRoles" EntityType="DBDiDongModel.AspNetRole" />
     <EntitySet Name="AspNetUserClaims" EntityType="DBDiDongModel.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="DBDiDongModel.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="DBDiDongModel.AspNetUser" />
-    <EntitySet Name="sysdiagrams" EntityType="DBDiDongModel.sysdiagram" />
+    <EntitySet Name="ChiTietHoaDons" EntityType="DBDiDongModel.ChiTietHoaDon" />
+    <EntitySet Name="GioHangs" EntityType="DBDiDongModel.GioHang" />
+    <EntitySet Name="HoaDons" EntityType="DBDiDongModel.HoaDon" />
+    <EntitySet Name="LoaiSanPhams" EntityType="DBDiDongModel.LoaiSanPham" />
+    <EntitySet Name="NhaSanXuats" EntityType="DBDiDongModel.NhaSanXuat" />
+    <EntitySet Name="SanPhams" EntityType="DBDiDongModel.SanPham" />
+    <EntitySet Name="ThongTinCaNhans" EntityType="DBDiDongModel.ThongTinCaNhan" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="DBDiDongModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
@@ -26,81 +22,45 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
     </AssociationSet>
-    <AssociationSet Name="AspNetUserRoles" Association="DBDiDongModel.AspNetUserRoles">
-      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+    <AssociationSet Name="FK_HoaDon_AspNetUsers" Association="DBDiDongModel.FK_HoaDon_AspNetUsers">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="HoaDon" EntitySet="HoaDons" />
     </AssociationSet>
-    <EntitySet Name="ThongTinCaNhans" EntityType="DBDiDongModel.ThongTinCaNhan" />
     <AssociationSet Name="FK_ThongTinCaNhan_AspNetUsers" Association="DBDiDongModel.FK_ThongTinCaNhan_AspNetUsers">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhans" />
     </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHoaDon_HoaDon" Association="DBDiDongModel.FK_ChiTietHoaDon_HoaDon">
+      <End Role="HoaDon" EntitySet="HoaDons" />
+      <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHoaDon_SanPham" Association="DBDiDongModel.FK_ChiTietHoaDon_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="DBDiDongModel.FK_SanPham_LoaiSanPham">
+      <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
+      <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_NhaSanXuat" Association="DBDiDongModel.FK_SanPham_NhaSanXuat">
+      <End Role="NhaSanXuat" EntitySet="NhaSanXuats" />
+      <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="DBDiDongModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="LoaiSanPham">
+  <EntityType Name="sysdiagram">
     <Key>
-      <PropertyRef Name="MaLoaiSanPham" />
+      <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="MaLoaiSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TenLoaiSanPham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="SanPhams" Relationship="DBDiDongModel.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <EntityType Name="NhaSanXuat">
-    <Key>
-      <PropertyRef Name="MaNhaSanXuat" />
-    </Key>
-    <Property Name="MaNhaSanXuat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TenNhaSanXuat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="SanPhams" Relationship="DBDiDongModel.FK_SanPham_NhaSanXuat" FromRole="NhaSanXuat" ToRole="SanPham" />
-  </EntityType>
-  <EntityType Name="SanPham">
-    <Key>
-      <PropertyRef Name="MaSanPham" />
-    </Key>
-    <Property Name="MaSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="MaLoaiSanPham" Type="Int32" />
-    <Property Name="MaNhaSanXuat" Type="Int32" />
-    <Property Name="TenSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CauHinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="HinhChinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Hinh1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Hinh2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Hinh3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Hinh4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Gia" Type="Int32" />
-    <Property Name="SoLuongDaBan" Type="Int32" />
-    <Property Name="LuotView" Type="Int32" />
-    <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="LoaiSanPham" Relationship="DBDiDongModel.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
-    <NavigationProperty Name="NhaSanXuat" Relationship="DBDiDongModel.FK_SanPham_NhaSanXuat" FromRole="SanPham" ToRole="NhaSanXuat" />
-  </EntityType>
-  <Association Name="FK_SanPham_LoaiSanPham">
-    <End Type="DBDiDongModel.LoaiSanPham" Role="LoaiSanPham" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="DBDiDongModel.SanPham" Role="SanPham" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LoaiSanPham">
-        <PropertyRef Name="MaLoaiSanPham" />
-      </Principal>
-      <Dependent Role="SanPham">
-        <PropertyRef Name="MaLoaiSanPham" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SanPham_NhaSanXuat">
-    <End Type="DBDiDongModel.NhaSanXuat" Role="NhaSanXuat" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="DBDiDongModel.SanPham" Role="SanPham" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="NhaSanXuat">
-        <PropertyRef Name="MaNhaSanXuat" />
-      </Principal>
-      <Dependent Role="SanPham">
-        <PropertyRef Name="MaNhaSanXuat" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="C__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -158,18 +118,103 @@
     <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUserClaims" Relationship="DBDiDongModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="DBDiDongModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-    <NavigationProperty Name="AspNetRoles" Relationship="DBDiDongModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+    <NavigationProperty Name="HoaDons" Relationship="DBDiDongModel.FK_HoaDon_AspNetUsers" FromRole="AspNetUser" ToRole="HoaDon" />
     <NavigationProperty Name="ThongTinCaNhans" Relationship="DBDiDongModel.FK_ThongTinCaNhan_AspNetUsers" FromRole="AspNetUser" ToRole="ThongTinCaNhan" />
+    <NavigationProperty Name="AspNetRoles" Relationship="DBDiDongModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
   </EntityType>
-  <EntityType Name="sysdiagram">
+  <EntityType Name="ChiTietHoaDon">
     <Key>
-      <PropertyRef Name="diagram_id" />
+      <PropertyRef Name="MaSanPham" />
+      <PropertyRef Name="OrderID" />
     </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="MaSanPham" Type="Int32" Nullable="false" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="TenSanPham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="Gia" Type="Int32" />
+    <Property Name="TongTien" Type="Int32" />
+    <NavigationProperty Name="HoaDon" Relationship="DBDiDongModel.FK_ChiTietHoaDon_HoaDon" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
+    <NavigationProperty Name="SanPham" Relationship="DBDiDongModel.FK_ChiTietHoaDon_SanPham" FromRole="ChiTietHoaDon" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="GioHang">
+    <Key>
+      <PropertyRef Name="IdGH" />
+    </Key>
+    <Property Name="IdGH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaTaiKhoan" Type="String" MaxLength="128" FixedLength="true" Unicode="true" />
+    <Property Name="MaSanPham" Type="Int32" />
+    <Property Name="TenSanPham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="Gia" Type="Int32" />
+    <Property Name="TongTien" Type="Int32" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NguoiDat" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="NguoiNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TongTien" Type="Int64" />
+    <Property Name="TrangThai" Type="Int32" />
+    <NavigationProperty Name="AspNetUser" Relationship="DBDiDongModel.FK_HoaDon_AspNetUsers" FromRole="HoaDon" ToRole="AspNetUser" />
+    <NavigationProperty Name="ChiTietHoaDons" Relationship="DBDiDongModel.FK_ChiTietHoaDon_HoaDon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
+  </EntityType>
+  <EntityType Name="LoaiSanPham">
+    <Key>
+      <PropertyRef Name="MaLoaiSanPham" />
+    </Key>
+    <Property Name="MaLoaiSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiSanPham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SanPhams" Relationship="DBDiDongModel.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="NhaSanXuat">
+    <Key>
+      <PropertyRef Name="MaNhaSanXuat" />
+    </Key>
+    <Property Name="MaNhaSanXuat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenNhaSanXuat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SanPhams" Relationship="DBDiDongModel.FK_SanPham_NhaSanXuat" FromRole="NhaSanXuat" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="MaSanPham" />
+    </Key>
+    <Property Name="MaSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaLoaiSanPham" Type="Int32" />
+    <Property Name="MaNhaSanXuat" Type="Int32" />
+    <Property Name="TenSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CauHinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HinhChinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gia" Type="Int32" />
+    <Property Name="SoLuongDaBan" Type="Int32" />
+    <Property Name="LuotView" Type="Int32" />
+    <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
+    <NavigationProperty Name="ChiTietHoaDons" Relationship="DBDiDongModel.FK_ChiTietHoaDon_SanPham" FromRole="SanPham" ToRole="ChiTietHoaDon" />
+    <NavigationProperty Name="LoaiSanPham" Relationship="DBDiDongModel.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
+    <NavigationProperty Name="NhaSanXuat" Relationship="DBDiDongModel.FK_SanPham_NhaSanXuat" FromRole="SanPham" ToRole="NhaSanXuat" />
+  </EntityType>
+  <EntityType Name="ThongTinCaNhan">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="MaTaiKhoan" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaTaiKhoan" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TenTaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="DBDiDongModel.FK_ThongTinCaNhan_AspNetUsers" FromRole="ThongTinCaNhan" ToRole="AspNetUser" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="DBDiDongModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -199,24 +244,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="AspNetUserRoles">
-    <End Type="DBDiDongModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-    <End Type="DBDiDongModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  <Association Name="FK_HoaDon_AspNetUsers">
+    <End Type="DBDiDongModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="DBDiDongModel.HoaDon" Role="HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="NguoiDat" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
-  <EntityType Name="ThongTinCaNhan">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="MaTaiKhoan" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="MaTaiKhoan" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="TenTaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="NgaySinh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="AspNetUser" Relationship="DBDiDongModel.FK_ThongTinCaNhan_AspNetUsers" FromRole="ThongTinCaNhan" ToRole="AspNetUser" />
-  </EntityType>
   <Association Name="FK_ThongTinCaNhan_AspNetUsers">
     <End Type="DBDiDongModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
     <End Type="DBDiDongModel.ThongTinCaNhan" Role="ThongTinCaNhan" Multiplicity="*" />
@@ -228,5 +267,61 @@
         <PropertyRef Name="MaTaiKhoan" />
       </Dependent>
     </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHoaDon_HoaDon">
+    <End Type="DBDiDongModel.HoaDon" Role="HoaDon" Multiplicity="1" />
+    <End Type="DBDiDongModel.ChiTietHoaDon" Role="ChiTietHoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDon">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ChiTietHoaDon">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHoaDon_SanPham">
+    <End Type="DBDiDongModel.SanPham" Role="SanPham" Multiplicity="1" />
+    <End Type="DBDiDongModel.ChiTietHoaDon" Role="ChiTietHoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSanPham" />
+      </Principal>
+      <Dependent Role="ChiTietHoaDon">
+        <PropertyRef Name="MaSanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_LoaiSanPham">
+    <End Type="DBDiDongModel.LoaiSanPham" Role="LoaiSanPham" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DBDiDongModel.SanPham" Role="SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSanPham">
+        <PropertyRef Name="MaLoaiSanPham" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaLoaiSanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_NhaSanXuat">
+    <End Type="DBDiDongModel.NhaSanXuat" Role="NhaSanXuat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DBDiDongModel.SanPham" Role="SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaSanXuat">
+        <PropertyRef Name="MaNhaSanXuat" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaNhaSanXuat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="DBDiDongModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="DBDiDongModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
   </Association>
 </Schema>
